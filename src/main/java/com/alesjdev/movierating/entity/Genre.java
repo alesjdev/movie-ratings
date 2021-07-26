@@ -1,22 +1,14 @@
 package com.alesjdev.movierating.entity;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "genre")
 public class Genre {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Set<Movie> movieList = new HashSet<>();
 
 

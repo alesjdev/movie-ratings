@@ -6,6 +6,11 @@ import javax.persistence.*;
 @Table(name = "review")
 public class Review {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -37,8 +42,24 @@ public class Review {
         this.opinion = opinion;
     }
 
+    public Review(int id, User user, int movieId, int score, String opinion) {
+        this.id = id;
+        this.user = user;
+        this.movieId = movieId;
+        this.score = score;
+        this.opinion = opinion;
+    }
+
 
     // Getters and Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getScore() {
         return score;
     }

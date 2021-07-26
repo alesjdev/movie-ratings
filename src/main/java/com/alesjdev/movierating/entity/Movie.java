@@ -1,14 +1,15 @@
 package com.alesjdev.movierating.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.HashSet;
 import java.util.Set;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
 
-    @Value("image_path")
+    @Value("${image_path}")
     private String IMAGE_PATH;  // Path prefix to add to the image links
 
     private int id;
@@ -189,5 +190,23 @@ public class Movie {
 
     public void setReviews(Set<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", imdb_id=" + imdb_id +
+                ", budget=" + budget +
+                ", original_language='" + original_language + '\'' +
+                ", title='" + title + '\'' +
+                ", original_title='" + original_title + '\'' +
+                ", overview='" + overview + '\'' +
+                ", backdrop_path='" + backdrop_path + '\'' +
+                ", poster_path='" + poster_path + '\'' +
+                ", release_date='" + release_date + '\'' +
+                ", revenue=" + revenue +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

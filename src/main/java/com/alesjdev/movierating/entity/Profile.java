@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class Profile {
 
-    @Value("image_path")
+    @Value("${image_path}")
     private String IMAGE_PATH;
 
     private String file_path;
