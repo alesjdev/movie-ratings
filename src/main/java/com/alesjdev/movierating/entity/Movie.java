@@ -1,9 +1,7 @@
 package com.alesjdev.movierating.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,11 +30,11 @@ public class Movie {
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
-            name = "movie_person",
+            name = "movie_actor",
             joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "person_id")
+            inverseJoinColumns = @JoinColumn(name = "actor_id")
     )
-    private Set<Person> cast = new HashSet<>();
+    private Set<Actor> cast = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
@@ -118,11 +116,11 @@ public class Movie {
         this.year = year;
     }
 
-    public Set<Person> getCast() {
+    public Set<Actor> getCast() {
         return cast;
     }
 
-    public void setCast(Set<Person> cast) {
+    public void setCast(Set<Actor> cast) {
         this.cast = cast;
     }
 
@@ -155,13 +153,13 @@ public class Movie {
     }
 
     // Utility method to add/remove cast from the movie
-    public void addCast(Person thePerson){
-        cast.add(thePerson);
-        thePerson.getMovieList().add(this);
+    public void addCast(Actor theActor){
+        cast.add(theActor);
+        theActor.getMovieList().add(this);
     }
-    public void removeCast(Person thePerson) {
-        cast.remove(thePerson);
-        thePerson.getMovieList().remove(this);
+    public void removeCast(Actor theActor) {
+        cast.remove(theActor);
+        theActor.getMovieList().remove(this);
     }
 
     // Utility method to add/remove genres from the movie

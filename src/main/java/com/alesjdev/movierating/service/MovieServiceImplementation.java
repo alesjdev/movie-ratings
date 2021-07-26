@@ -2,7 +2,6 @@ package com.alesjdev.movierating.service;
 
 import com.alesjdev.movierating.dao.MovieRepository;
 import com.alesjdev.movierating.entity.Movie;
-import com.alesjdev.movierating.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

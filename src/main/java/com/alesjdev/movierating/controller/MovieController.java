@@ -1,10 +1,10 @@
 package com.alesjdev.movierating.controller;
 
+import com.alesjdev.movierating.entity.Actor;
 import com.alesjdev.movierating.entity.Genre;
 import com.alesjdev.movierating.entity.Movie;
-import com.alesjdev.movierating.entity.Person;
 import com.alesjdev.movierating.service.MovieService;
-import com.alesjdev.movierating.service.PersonService;
+import com.alesjdev.movierating.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ public class MovieController {
     @Autowired
     MovieService movieService;
     @Autowired
-    PersonService personService;
+    ActorService actorService;
 
     @GetMapping("/movies")
     public String getAllMovies(Model theModel){
@@ -29,11 +29,11 @@ public class MovieController {
 
     @GetMapping("/addMovie")
     public void addMovie(){
-        Movie newMovie = new Movie("el frosti I", "war in the seas", "taaa link", "picc link", 1934);
-        Genre genre = new Genre ("SALTOS");
-        Person person = new Person("osico", "foto nise", "er makinon");
+        Movie newMovie = new Movie("Star Wars II", "war in the stars", "trailer link", "pic link", 1934);
+        Genre genre = new Genre ("SCIFI");
+        Actor actor = new Actor("Mark Hamill", "hamill.jpg", "Plays Luke Skywalker");
         newMovie.addGenre(genre);
-        newMovie.addCast(person);
+        newMovie.addCast(actor);
         movieService.save(newMovie);
     }
 

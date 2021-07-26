@@ -1,14 +1,12 @@
 package com.alesjdev.movierating.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "person")
-public class Person {
+@Table(name = "actor")
+public class Actor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,16 +27,16 @@ public class Person {
 
 
     // Constructors
-    public Person() {
+    public Actor() {
     }
 
-    public Person(String name, String picLink, String biography) {
+    public Actor(String name, String picLink, String biography) {
         this.name = name;
         this.picLink = picLink;
         this.biography = biography;
     }
 
-    public Person(int id, String name, String picLink, String biography) {
+    public Actor(int id, String name, String picLink, String biography) {
         this.id = id;
         this.name = name;
         this.picLink = picLink;
@@ -87,7 +85,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Actor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", picLink='" + picLink + '\'' +
