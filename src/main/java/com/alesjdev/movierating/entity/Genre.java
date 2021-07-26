@@ -1,9 +1,7 @@
 package com.alesjdev.movierating.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,6 +19,7 @@ public class Genre {
     @ManyToMany(mappedBy = "genres", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Set<Movie> movieList = new HashSet<>();
 
+
     // Constructors
     public Genre() {
     }
@@ -34,8 +33,8 @@ public class Genre {
         this.name = name;
     }
 
-    // Getters and Setters
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -58,23 +57,5 @@ public class Genre {
 
     public void setMovieList(Set<Movie> movieList) {
         this.movieList = movieList;
-    }
-
-    @Override
-    public String toString() {
-        return "Genre{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    // Utility methods to add/remove a movie from the genre
-    public void addMovie(Movie theMovie){
-        this.movieList.add(theMovie);
-        theMovie.addGenre(this);
-    }
-    public void removeMovie(Movie theMovie){
-        this.movieList.remove(theMovie);
-        theMovie.removeGenre(this);
     }
 }

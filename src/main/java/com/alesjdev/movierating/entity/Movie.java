@@ -1,79 +1,106 @@
 package com.alesjdev.movierating.entity;
 
-import javax.persistence.*;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "movie")
+
 public class Movie {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Value("image_path")
+    private String IMAGE_PATH;  // Path prefix to add to the image links
+
     private int id;
 
-    @Column(name = "title")
+    private int imdb_id;
+
+    private int budget;
+
+    private String original_language;
+
     private String title;
 
-    @Column(name = "plot")
-    private String plot;
+    private String original_title;
 
-    @Column(name = "trailer_link")
-    private String trailer_link;
+    private String overview;
 
-    @Column(name = "poster_link")
-    private String poster_link;
+    private String backdrop_path;
 
-    @Column(name = "year")
-    private int year;
+    private String poster_path;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(
-            name = "movie_actor",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id")
-    )
-    private Set<Actor> cast = new HashSet<>();
+    private String release_date;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(
-            name = "movie_genre",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id")
-    )
+    private int revenue;
+
+    private String status;  // Rumored, planned, in production, post production, released, canceled
+
+    private Set<Person> people = new HashSet<>();
+
     private Set<Genre> genres = new HashSet<>();
 
-    @OneToMany(mappedBy = "movie")
-    private Set<Review> reviewList = new HashSet<>();
+    private Set<Review> reviews = new HashSet<>();
 
 
     // Constructors
-    public Movie() {}
-
-    public Movie(String title, String plot, String trailer_link, String poster_link, int year) {
-        this.title = title;
-        this.plot = plot;
-        this.trailer_link = trailer_link;
-        this.poster_link = poster_link;
-        this.year = year;
+    public Movie() {
     }
 
-    public Movie(int id, String title, String plot, String trailer_link, String poster_link, int year) {
+    public Movie(int id, String title) {
         this.id = id;
         this.title = title;
-        this.plot = plot;
-        this.trailer_link = trailer_link;
-        this.poster_link = poster_link;
-        this.year = year;
     }
 
+    public Movie(int id, int imdb_id, int budget, String original_language, String title, String original_title, String overview, String backdrop_path, String poster_path, String release_date, int revenue, String status, Set<Person> people, Set<Genre> genres, Set<Review> reviews) {
+        this.id = id;
+        this.imdb_id = imdb_id;
+        this.budget = budget;
+        this.original_language = original_language;
+        this.title = title;
+        this.original_title = original_title;
+        this.overview = overview;
+        this.backdrop_path = backdrop_path;
+        this.poster_path = poster_path;
+        this.release_date = release_date;
+        this.revenue = revenue;
+        this.status = status;
+        this.people = people;
+        this.genres = genres;
+        this.reviews = reviews;
+    }
+
+
+    // Getters and Setters
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getImdb_id() {
+        return imdb_id;
+    }
+
+    public void setImdb_id(int imdb_id) {
+        this.imdb_id = imdb_id;
+    }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
+    }
+
+    public String getOriginal_language() {
+        return original_language;
+    }
+
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
     }
 
     public String getTitle() {
@@ -84,44 +111,68 @@ public class Movie {
         this.title = title;
     }
 
-    public String getPlot() {
-        return plot;
+    public String getOriginal_title() {
+        return original_title;
     }
 
-    public void setPlot(String plot) {
-        this.plot = plot;
+    public void setOriginal_title(String original_title) {
+        this.original_title = original_title;
     }
 
-    public String getTrailer_link() {
-        return trailer_link;
+    public String getOverview() {
+        return overview;
     }
 
-    public void setTrailer_link(String trailer_link) {
-        this.trailer_link = trailer_link;
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
-    public String getPoster_link() {
-        return poster_link;
+    public String getBackdrop_path() {
+        return backdrop_path;
     }
 
-    public void setPoster_link(String poster_link) {
-        this.poster_link = poster_link;
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = IMAGE_PATH + backdrop_path;  // Add path prefix to the image link
     }
 
-    public int getYear() {
-        return year;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setPoster_path(String poster_path) {
+        this.poster_path = IMAGE_PATH + poster_path;  // Add path prefix to the image link
     }
 
-    public Set<Actor> getCast() {
-        return cast;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setCast(Set<Actor> cast) {
-        this.cast = cast;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public int getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(int revenue) {
+        this.revenue = revenue;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Set<Person> getPeople() {
+        return people;
+    }
+
+    public void setPeople(Set<Person> people) {
+        this.people = people;
     }
 
     public Set<Genre> getGenres() {
@@ -132,53 +183,11 @@ public class Movie {
         this.genres = genres;
     }
 
-    public Set<Review> getReviewList() {
-        return reviewList;
+    public Set<Review> getReviews() {
+        return reviews;
     }
 
-    public void setReviewList(Set<Review> reviewList) {
-        this.reviewList = reviewList;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", plot='" + plot + '\'' +
-                ", trailer_link='" + trailer_link + '\'' +
-                ", poster_link='" + poster_link + '\'' +
-                ", year=" + year +
-                '}';
-    }
-
-    // Utility method to add/remove cast from the movie
-    public void addCast(Actor theActor){
-        cast.add(theActor);
-        theActor.getMovieList().add(this);
-    }
-    public void removeCast(Actor theActor) {
-        cast.remove(theActor);
-        theActor.getMovieList().remove(this);
-    }
-
-    // Utility method to add/remove genres from the movie
-    public void addGenre(Genre theGenre){
-        genres.add(theGenre);
-        theGenre.getMovieList().add(this);
-    }
-    public void removeGenre(Genre theGenre) {
-        genres.remove(theGenre);
-        theGenre.getMovieList().remove(this);
-    }
-
-    // Utility method to add/remove reviews from the movie
-    public void addReview(Review theReview){
-        reviewList.add(theReview);
-        theReview.setMovie(this);
-    }
-    public void removeReview(Review theReview) {
-        reviewList.remove(theReview);
-        theReview.setMovie(null);
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 }

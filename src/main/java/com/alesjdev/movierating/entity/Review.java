@@ -6,10 +6,12 @@ import javax.persistence.*;
 @Table(name = "review")
 public class Review {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "movie_id")
+    private int movieId;
 
     @Column(name = "score")
     private int score;
@@ -17,36 +19,26 @@ public class Review {
     @Column(name = "opinion")
     private String opinion;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
-
+    // Constructors
     public Review() {
     }
 
-    public Review(int score, String opinion) {
+    public Review(User user, int movieId, int score) {
+        this.user = user;
+        this.movieId = movieId;
+        this.score = score;
+    }
+
+    public Review(User user, int movieId, int score, String opinion) {
+        this.user = user;
+        this.movieId = movieId;
         this.score = score;
         this.opinion = opinion;
     }
 
-    public Review(int id, int score, String opinion) {
-        this.id = id;
-        this.score = score;
-        this.opinion = opinion;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    // Getters and Setters
     public int getScore() {
         return score;
     }
@@ -71,20 +63,11 @@ public class Review {
         this.user = user;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public int getMovieId() {
+        return movieId;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
-
-    @Override
-    public String toString() {
-        return "Review{" +
-                "id=" + id +
-                ", score=" + score +
-                ", opinion='" + opinion + '\'' +
-                '}';
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 }

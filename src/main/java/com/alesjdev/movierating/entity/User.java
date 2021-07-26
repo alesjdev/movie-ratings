@@ -24,16 +24,18 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "about")
+    private String about;
+
+    @Column(name = "enabled")
+    private boolean enabled;
+
     @OneToMany(mappedBy = "user")
     private Set<Review> reviewList = new HashSet<>();
 
-    public User() {
-    }
 
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
+    // Constructors
+    public User() {
     }
 
     public User(int id, String username, String password, String email) {
@@ -43,6 +45,35 @@ public class User {
         this.email = email;
     }
 
+    public User(int id, String username, String password, String email, boolean enabled) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.enabled = enabled;
+    }
+
+    public User(int id, String username, String password, String email, String about, boolean enabled) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.about = about;
+        this.enabled = enabled;
+    }
+
+    public User(int id, String username, String password, String email, String about, boolean enabled, Set<Review> reviewList) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.about = about;
+        this.enabled = enabled;
+        this.reviewList = reviewList;
+    }
+
+
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -75,22 +106,28 @@ public class User {
         this.email = email;
     }
 
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public Set<Review> getReviewList() {
         return reviewList;
     }
 
     public void setReviewList(Set<Review> reviewList) {
         this.reviewList = reviewList;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
     }
 
     // Convenience methods to add / delete reviews from the user
