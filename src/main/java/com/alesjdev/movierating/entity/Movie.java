@@ -1,5 +1,6 @@
 package com.alesjdev.movierating.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,41 +11,47 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
 
-    @Value("${tmdb.image-path}")
-    private String IMAGE_PATH;  // Path prefix to add to the image links
+//    @Value("${tmdb.image-path}")
+//    private String IMAGE_PATH;  // Path prefix to add to the image links
 
     @JsonProperty("id")
     private int id;
 
     @JsonProperty("imdb_id")
-    private String imdb_id;
+    private String imdbId;
 
     @JsonProperty("budget")
     private int budget;
 
     @JsonProperty("original_language")
-    private String original_language;
+    private String originalLanguage;
 
     @JsonProperty("title")
     private String title;
 
     @JsonProperty("original_title")
-    private String original_title;
+    private String originalTitle;
 
     @JsonProperty("overview")
     private String overview;
 
     @JsonProperty("backdrop_path")
-    private String backdrop_path;
+    private String backdropPath;
 
     @JsonProperty("poster_path")
-    private String poster_path;
+    private String posterPath;
 
     @JsonProperty("release_date")
-    private String release_date;
+    private String releaseDate;
 
     @JsonProperty("revenue")
     private int revenue;
+
+    @JsonProperty("popularity")
+    private int popularity;
+
+    @JsonProperty("runtime")
+    private int runtime;
 
     @JsonProperty("status")
     private String status;  // Rumored, planned, in production, post production, released, canceled
@@ -68,12 +75,12 @@ public class Movie {
         this.id = id;
     }
 
-    public String getImdb_id() {
-        return imdb_id;
+    public String getImdbId() {
+        return imdbId;
     }
 
-    public void setImdb_id(String imdb_id) {
-        this.imdb_id = imdb_id;
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
     }
 
     public int getBudget() {
@@ -84,12 +91,12 @@ public class Movie {
         this.budget = budget;
     }
 
-    public String getOriginal_language() {
-        return original_language;
+    public String getOriginalLanguage() {
+        return originalLanguage;
     }
 
-    public void setOriginal_language(String original_language) {
-        this.original_language = original_language;
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 
     public String getTitle() {
@@ -100,12 +107,12 @@ public class Movie {
         this.title = title;
     }
 
-    public String getOriginal_title() {
-        return original_title;
+    public String getOriginalTitle() {
+        return originalTitle;
     }
 
-    public void setOriginal_title(String original_title) {
-        this.original_title = original_title;
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
     }
 
     public String getOverview() {
@@ -116,28 +123,28 @@ public class Movie {
         this.overview = overview;
     }
 
-    public String getBackdrop_path() {
-        return backdrop_path;
+    public String getBackdropPath() {
+        return backdropPath;
     }
 
-    public void setBackdrop_path(String backdrop_path) {
-        this.backdrop_path = IMAGE_PATH + backdrop_path;  // Add path prefix to the image link
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = "https://image.tmdb.org/t/p/original" + backdropPath;
     }
 
-    public String getPoster_path() {
-        return poster_path;
+    public String getPosterPath() {
+        return posterPath;
     }
 
-    public void setPoster_path(String poster_path) {
-        this.poster_path = IMAGE_PATH + poster_path;  // Add path prefix to the image link
+    public void setPosterPath(String posterPath) {
+        this.posterPath = "https://image.tmdb.org/t/p/original" + posterPath;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public int getRevenue() {
@@ -148,12 +155,36 @@ public class Movie {
         this.revenue = revenue;
     }
 
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isAdult() {
+        return adult;
+    }
+
+    public void setAdult(boolean adult) {
+        this.adult = adult;
     }
 
     public Set<Person> getPeople() {
@@ -180,29 +211,22 @@ public class Movie {
         this.reviews = reviews;
     }
 
-    public boolean isAdult() {
-        return adult;
-    }
-
-    public void setAdult(boolean adult) {
-        this.adult = adult;
-    }
-
     @Override
     public String toString() {
         return "Movie{" +
-                "IMAGE_PATH='" + IMAGE_PATH + '\'' +
-                ", id=" + id +
-                ", imdb_id='" + imdb_id + '\'' +
+                "id=" + id +
+                ", imdbId='" + imdbId + '\'' +
                 ", budget=" + budget +
-                ", original_language='" + original_language + '\'' +
+                ", originalLanguage='" + originalLanguage + '\'' +
                 ", title='" + title + '\'' +
-                ", original_title='" + original_title + '\'' +
+                ", originalTitle='" + originalTitle + '\'' +
                 ", overview='" + overview + '\'' +
-                ", backdrop_path='" + backdrop_path + '\'' +
-                ", poster_path='" + poster_path + '\'' +
-                ", release_date='" + release_date + '\'' +
+                ", backdropPath='" + backdropPath + '\'' +
+                ", posterPath='" + posterPath + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
                 ", revenue=" + revenue +
+                ", popularity=" + popularity +
+                ", runtime=" + runtime +
                 ", status='" + status + '\'' +
                 ", adult=" + adult +
                 '}';

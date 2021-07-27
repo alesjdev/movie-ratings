@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface MovieService {
     public List<Movie> findPopular();
-    public Movie findLatest();
     public List<Movie> findTopRated();
     public List<Movie> findUpcoming();
 

@@ -26,11 +26,6 @@ public class MovieServiceImplementation implements MovieService {
     }
 
     @Override
-    public Movie findLatest() {
-        return obtainSingleResult("movie/latest");
-    }
-
-    @Override
     public List<Movie> findTopRated() {
         return obtainList("movie/top_rated");
     }

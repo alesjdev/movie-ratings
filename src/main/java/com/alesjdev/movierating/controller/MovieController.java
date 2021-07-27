@@ -13,18 +13,12 @@ public class MovieController {
     @Autowired
     MovieService theMovieService;
 
-    @GetMapping("/movies")
-    public String mainPage(Model theModel){
-        theModel.addAttribute("popular", theMovieService.findPopular());
-        theModel.addAttribute("latest", theMovieService.findLatest());
-        theModel.addAttribute("topRated", theMovieService.findTopRated());
-        theModel.addAttribute("upcoming", theMovieService.findUpcoming());
-        return "movies";
-    }
-
     @GetMapping("/")
-    public String test(){
-        return "blog";
+    public String mainPage(Model theModel){
+        theModel.addAttribute("popularMovies", theMovieService.findPopular());
+        theModel.addAttribute("topRatedMovies", theMovieService.findTopRated());
+        theModel.addAttribute("upcomingMovies", theMovieService.findUpcoming());
+        return "main";
     }
 
 }
