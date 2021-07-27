@@ -1,6 +1,7 @@
 package com.alesjdev.movierating.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.HashSet;
@@ -9,31 +10,43 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
 
-    @Value("${image_path}")
+    @Value("${tmdb.image-path}")
     private String IMAGE_PATH;  // Path prefix to add to the image links
 
+    @JsonProperty("id")
     private int id;
 
+    @JsonProperty("imdb_id")
     private int imdb_id;
 
+    @JsonProperty("budget")
     private int budget;
 
+    @JsonProperty("original_language")
     private String original_language;
 
+    @JsonProperty("title")
     private String title;
 
+    @JsonProperty("original_title")
     private String original_title;
 
+    @JsonProperty("overview")
     private String overview;
 
+    @JsonProperty("backdrop_path")
     private String backdrop_path;
 
+    @JsonProperty("poster_path")
     private String poster_path;
 
+    @JsonProperty("release_date")
     private String release_date;
 
+    @JsonProperty("revenue")
     private int revenue;
 
+    @JsonProperty("status")
     private String status;  // Rumored, planned, in production, post production, released, canceled
 
     private Set<Person> people = new HashSet<>();
