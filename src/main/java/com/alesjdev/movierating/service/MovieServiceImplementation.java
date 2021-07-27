@@ -35,6 +35,11 @@ public class MovieServiceImplementation implements MovieService {
         return obtainList("movie/upcoming");
     }
 
+    @Override
+    public Movie findById(int movieId) {
+        return obtainSingleResult("movie/" + String.valueOf(movieId));
+    }
+
     private List<Movie> obtainList(String from){
         ObjectMapper mapper = new ObjectMapper();
         Results results = null;
