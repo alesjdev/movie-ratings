@@ -7,18 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 @Controller
 public class MovieController {
 
     @Autowired
     MovieService theMovieService;
 
-    @GetMapping("/popular")
+    @GetMapping("/movies")
     public String mainPage(Model theModel){
         theModel.addAttribute("popular", theMovieService.findPopular());
-        return "popular";
+        theModel.addAttribute("latest", theMovieService.findLatest());
+        theModel.addAttribute("topRated", theMovieService.findTopRated());
+        theModel.addAttribute("upcoming", theMovieService.findUpcoming());
+        return "movies";
     }
 
 }

@@ -17,7 +17,7 @@ public class Movie {
     private int id;
 
     @JsonProperty("imdb_id")
-    private int imdb_id;
+    private String imdb_id;
 
     @JsonProperty("budget")
     private int budget;
@@ -49,39 +49,14 @@ public class Movie {
     @JsonProperty("status")
     private String status;  // Rumored, planned, in production, post production, released, canceled
 
+    @JsonProperty("adult")
+    private boolean adult;
+
     private Set<Person> people = new HashSet<>();
 
     private Set<Genre> genres = new HashSet<>();
 
     private Set<Review> reviews = new HashSet<>();
-
-
-    // Constructors
-    public Movie() {
-    }
-
-    public Movie(int id, String title) {
-        this.id = id;
-        this.title = title;
-    }
-
-    public Movie(int id, int imdb_id, int budget, String original_language, String title, String original_title, String overview, String backdrop_path, String poster_path, String release_date, int revenue, String status, Set<Person> people, Set<Genre> genres, Set<Review> reviews) {
-        this.id = id;
-        this.imdb_id = imdb_id;
-        this.budget = budget;
-        this.original_language = original_language;
-        this.title = title;
-        this.original_title = original_title;
-        this.overview = overview;
-        this.backdrop_path = backdrop_path;
-        this.poster_path = poster_path;
-        this.release_date = release_date;
-        this.revenue = revenue;
-        this.status = status;
-        this.people = people;
-        this.genres = genres;
-        this.reviews = reviews;
-    }
 
 
     // Getters and Setters
@@ -93,11 +68,11 @@ public class Movie {
         this.id = id;
     }
 
-    public int getImdb_id() {
+    public String getImdb_id() {
         return imdb_id;
     }
 
-    public void setImdb_id(int imdb_id) {
+    public void setImdb_id(String imdb_id) {
         this.imdb_id = imdb_id;
     }
 
@@ -205,11 +180,20 @@ public class Movie {
         this.reviews = reviews;
     }
 
+    public boolean isAdult() {
+        return adult;
+    }
+
+    public void setAdult(boolean adult) {
+        this.adult = adult;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
-                "id=" + id +
-                ", imdb_id=" + imdb_id +
+                "IMAGE_PATH='" + IMAGE_PATH + '\'' +
+                ", id=" + id +
+                ", imdb_id='" + imdb_id + '\'' +
                 ", budget=" + budget +
                 ", original_language='" + original_language + '\'' +
                 ", title='" + title + '\'' +
@@ -220,6 +204,7 @@ public class Movie {
                 ", release_date='" + release_date + '\'' +
                 ", revenue=" + revenue +
                 ", status='" + status + '\'' +
+                ", adult=" + adult +
                 '}';
     }
 }
