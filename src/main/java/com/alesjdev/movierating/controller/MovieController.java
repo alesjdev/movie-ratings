@@ -22,4 +22,9 @@ public class MovieController {
         return "movies";
     }
 
+    @GetMapping("/")
+    public String test(){
+        return "blog";
+    }
+
 }
