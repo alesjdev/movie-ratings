@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,7 +21,7 @@ public class Movie {
     private String imdbId;
 
     @JsonProperty("budget")
-    private int budget;
+    private String budget;
 
     @JsonProperty("original_language")
     private String originalLanguage;
@@ -44,7 +45,7 @@ public class Movie {
     private String releaseDate;
 
     @JsonProperty("revenue")
-    private int revenue;
+    private String revenue;
 
     @JsonProperty("popularity")
     private int popularity;
@@ -79,15 +80,15 @@ public class Movie {
     }
 
     public void setImdbId(String imdbId) {
-        this.imdbId = imdbId;
+        this.imdbId = "https://www.imdb.com/title/" + imdbId;
     }
 
-    public int getBudget() {
+    public String getBudget() {
         return budget;
     }
 
     public void setBudget(int budget) {
-        this.budget = budget;
+        this.budget = budget > 0 ? "$ " + budget : "Not available";
     }
 
     public String getOriginalLanguage() {
@@ -95,7 +96,7 @@ public class Movie {
     }
 
     public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
+        this.originalLanguage = originalLanguage.toUpperCase();
     }
 
     public String getTitle() {
@@ -146,12 +147,12 @@ public class Movie {
         this.releaseDate = releaseDate;
     }
 
-    public int getRevenue() {
+    public String getRevenue() {
         return revenue;
     }
 
     public void setRevenue(int revenue) {
-        this.revenue = revenue;
+        this.revenue = revenue > 0 ? "$ " + revenue : "Not available";
     }
 
     public int getPopularity() {

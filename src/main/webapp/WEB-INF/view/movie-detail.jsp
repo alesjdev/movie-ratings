@@ -16,7 +16,10 @@
 <jsp:include page="frame/navbar-top.jsp" />
 <div id="layoutSidenav">
     <jsp:include page="frame/navbar-side.jsp" />
-    <div id="layoutSidenav_content" style="background-image: url('${movie.backdropPath}')">
+    <div id="layoutSidenav_content"
+         style="background-image: url('${movie.backdropPath}');
+                background-size: cover;
+                background-position: center;">
         <main>
             <div class="container-fluid px-4">
                 <br><br>
@@ -38,11 +41,11 @@
                             <p>Duration: <span style="color: cyan">${movie.runtime} minutes</span></p>
                             <p>Status: <span style="color: yellow">${movie.status}</span></p>
                             <p>Release Date: <span style="color: orange">${movie.releaseDate}</span></p>
-                            <p>Budget: <span style="color: tomato">$${movie.budget}</span></p>
-                            <p>Revenue: <span style="color: springgreen">$${movie.revenue}</span></p>
+                            <p>Budget: <span style="color: tomato">${movie.budget}</span></p>
+                            <p>Revenue: <span style="color: springgreen">${movie.revenue}</span></p>
                             <p>Original language: <span style="color: lightgray">${movie.originalLanguage}</span></p>
                             <p>Popularity: <span style="color: hotpink">${movie.popularity}</span></p>
-                            <a href="https://www.imdb.com/title/${movie.imdbId}" class="btn btn-warning text-white">IMDB</a>
+                            <a href="${movie.imdbId}" class="btn btn-warning">IMDB</a>
                         </div>
                     </div>
 
