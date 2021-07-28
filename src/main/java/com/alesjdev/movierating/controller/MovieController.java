@@ -1,6 +1,5 @@
 package com.alesjdev.movierating.controller;
 
-import com.alesjdev.movierating.entity.Movie;
 import com.alesjdev.movierating.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

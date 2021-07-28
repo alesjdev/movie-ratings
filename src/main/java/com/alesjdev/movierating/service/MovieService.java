@@ -1,6 +1,6 @@
 package com.alesjdev.movierating.service;
 
-import com.alesjdev.movierating.entity.Movie;
+import com.alesjdev.movierating.model.Movie;
 
 import java.util.List;
 

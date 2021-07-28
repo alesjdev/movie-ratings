@@ -1,8 +1,7 @@
 package com.alesjdev.movierating.service;
 
-import com.alesjdev.movierating.entity.Movie;
-import com.alesjdev.movierating.entity.Results;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.alesjdev.movierating.model.Movie;
+import com.alesjdev.movierating.model.Results;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

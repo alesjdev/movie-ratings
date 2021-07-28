@@ -1,9 +1,8 @@
-package com.alesjdev.movierating.entity;
+package com.alesjdev.movierating.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.alesjdev.movierating.entity.Review;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.HashSet;
 import java.util.Set;

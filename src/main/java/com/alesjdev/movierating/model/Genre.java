@@ -1,4 +1,4 @@
-package com.alesjdev.movierating.entity;
+package com.alesjdev.movierating.model;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.alesjdev.movierating.entity;
+package com.alesjdev.movierating.model;
 
 import org.springframework.beans.factory.annotation.Value;
 
