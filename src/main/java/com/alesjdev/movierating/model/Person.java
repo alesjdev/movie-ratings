@@ -111,7 +111,9 @@ public class Person {
     }
 
     public void setProfilePath(String profilePath) {
-        this.profilePath = profilePath;
+        this.profilePath = profilePath != null ?
+                "https://image.tmdb.org/t/p/original" + profilePath :
+                "https://2gyntc2a2i9a22ifya16a222-wpengine.netdna-ssl.com/wp-content/uploads/sites/29/2014/12/Image-Not-Available.jpg";
     }
 
     public String getCharacter() {
@@ -184,6 +186,26 @@ public class Person {
 
     public void setProfiles(List<Profile> profiles) {
         this.profiles = profiles;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", originalName='" + originalName + '\'' +
+                ", adult=" + adult +
+                ", knownForDepartment='" + knownForDepartment + '\'' +
+                ", popularity=" + popularity +
+                ", profilePath='" + profilePath + '\'' +
+                ", character='" + character + '\'' +
+                ", alsoKnownAs=" + alsoKnownAs +
+                ", birthday='" + birthday + '\'' +
+                ", deathday='" + deathday + '\'' +
+                ", biography='" + biography + '\'' +
+                ", place_of_birth='" + place_of_birth + '\'' +
+                ", imdb_id='" + imdb_id + '\'' +
+                '}';
     }
 }
 

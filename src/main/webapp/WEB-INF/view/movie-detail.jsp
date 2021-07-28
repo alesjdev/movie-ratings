@@ -12,14 +12,14 @@
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed" style="background-image: url('${movie.backdropPath}');
+              background-size: cover;
+              background-attachment: fixed;
+              background-position: center;">
 <jsp:include page="frame/navbar-top.jsp" />
 <div id="layoutSidenav">
     <jsp:include page="frame/navbar-side.jsp" />
-    <div id="layoutSidenav_content"
-         style="background-image: url('${movie.backdropPath}');
-                background-size: cover;
-                background-position: center;">
+    <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
                 <br>
@@ -52,12 +52,27 @@
                     </div>
                     <!-- End of movie tags -->
                 </div>
-
+                <hr>
                 <!-- Cast-->
-                <c:forEach var="person" items="${movie.cast}">
-                    ${person.name} ,
-                </c:forEach>
-
+                <div class="row" style="opacity:0.85">
+                    <!-- Movie image card -->
+                    <c:forEach var="person" items="${movie.cast}">
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4">
+                            <div class="card text-white bg-dark mb-4" style="max-width: 18rem;">
+                                <div class="card-body">
+                                    <a href="castDetail?castId=${person.id}">
+                                        <img src="${person.profilePath}" alt="${person.name}"
+                                             style="max-width: 100%; height: auto;">
+                                    </a>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="castDetail?castId=${person.id}">${person.name}</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
         </main>
         <jsp:include page="frame/footer.jsp" />
