@@ -21,7 +21,7 @@ public class MovieController {
         return "main";
     }
 
-    @GetMapping("/movie/{movieId}")  // Get movie by Id and display all details
+    @GetMapping("/movie")  // Get movie by Id and display all details
     public String movieDetails(@RequestParam int movieId, Model theModel){
         theModel.addAttribute("movie", theMovieService.findById(movieId));
         return "movie-detail";

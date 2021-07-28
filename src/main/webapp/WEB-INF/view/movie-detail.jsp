@@ -19,78 +19,8 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Movies</h1>
+                <h1 class="mt-4">${movie}</h1>
 
-                <!-- Popular movies -->
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Popular</li>
-                </ol>
-                <div class="row">
-                    <!-- Movie cards -->
-                    <c:forEach var="movie" items="${popularMovies}">
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-4">
-                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                                <div class="card-body">
-                                    <a href="#"><img src="${movie.posterPath}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
-                                </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">${movie.title}</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
-                    <!-- End of movie tags -->
-                </div>
-                <!-- End of popular movies -->
-                <br><hr><br>
-
-                <!-- Top-rated movies -->
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Top rated</li>
-                </ol>
-                <div class="row">
-                    <!-- Movie cards -->
-                    <c:forEach var="movie" items="${topRatedMovies}">
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-4">
-                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                                <div class="card-body">
-                                    <a href="#"><img src="${movie.posterPath}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
-                                </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">${movie.title}</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
-                    <!-- End of movie tags -->
-                </div>
-                <!-- End of top-rated movies -->
-                <br><hr><br>
-
-                <!-- Upcoming movies -->
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Upcoming</li>
-                </ol>
-                <div class="row">
-                    <!-- Movie cards -->
-                    <c:forEach var="movie" items="${upcomingMovies}">
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-4">
-                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                                <div class="card-body">
-                                    <a href="#"><img src="${movie.posterPath}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
-                                </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">${movie.title}</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
-                    <!-- End of movie tags -->
-                </div>
-                <!-- End of upcoming movies -->
 
             </div>
         </main>
