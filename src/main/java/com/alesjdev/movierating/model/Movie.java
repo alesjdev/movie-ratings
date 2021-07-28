@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -62,7 +61,8 @@ public class Movie {
     @JsonProperty("adult")
     private boolean adult;
 
-    private Set<Person> people = new HashSet<>();
+    @JsonProperty("cast")
+    private Set<Person> cast = new HashSet<>();
 
     @JsonProperty("genres")
     private Set<Genre> genres = new HashSet<>();
@@ -191,12 +191,12 @@ public class Movie {
         this.adult = adult;
     }
 
-    public Set<Person> getPeople() {
-        return people;
+    public Set<Person> getCast() {
+        return cast;
     }
 
-    public void setPeople(Set<Person> people) {
-        this.people = people;
+    public void setCast(Set<Person> cast) {
+        this.cast = cast;
     }
 
     public Set<Genre> getGenres() {

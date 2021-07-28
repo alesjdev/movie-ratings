@@ -1,7 +1,9 @@
 package com.alesjdev.movierating.service;
 
 import com.alesjdev.movierating.model.Movie;
+import com.alesjdev.movierating.model.Person;
 import com.alesjdev.movierating.model.Results;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class MovieServiceImplementation implements MovieService {
@@ -20,26 +23,28 @@ public class MovieServiceImplementation implements MovieService {
     private String API_KEY;
 
     @Override
-    public List<Movie> findPopular() {
-        return obtainList("movie/popular");
+    public Set<Movie> findPopular() {
+        return obtainMovieList("movie/popular");
     }
 
     @Override
-    public List<Movie> findTopRated() {
-        return obtainList("movie/top_rated");
+    public Set<Movie> findTopRated() {
+        return obtainMovieList("movie/top_rated");
     }
 
     @Override
-    public List<Movie> findUpcoming() {
-        return obtainList("movie/upcoming");
+    public Set<Movie> findUpcoming() {
+        return obtainMovieList("movie/upcoming");
     }
 
     @Override
     public Movie findById(int movieId) {
-        return obtainSingleResult("movie/" + String.valueOf(movieId));
+        return obtainSingleMovie("movie/" + String.valueOf(movieId));
     }
 
-    private List<Movie> obtainList(String from){
+
+
+    private Set<Movie> obtainMovieList(String from){
         ObjectMapper mapper = new ObjectMapper();
         Results results = null;
         try {
@@ -54,11 +59,13 @@ public class MovieServiceImplementation implements MovieService {
         }
     }
 
-    private Movie obtainSingleResult(String from){
+    private Movie obtainSingleMovie(String from){
         ObjectMapper mapper = new ObjectMapper();
         Movie theMovie = null;
         try {
             theMovie = mapper.readValue(new URL(PREFIX_PATH + from + "?" + API_KEY), Movie.class );
+            Movie movieCast = mapper.readValue(new URL(PREFIX_PATH + "movie/" + theMovie.getId() + "/credits?" + API_KEY), Movie.class );
+            theMovie.setCast(movieCast.getCast());
         } catch (IOException e) {
             e.printStackTrace();
         }

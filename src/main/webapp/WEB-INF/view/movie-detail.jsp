@@ -54,7 +54,9 @@
                 </div>
 
                 <!-- Cast-->
-
+                <c:forEach var="person" items="${movie.cast}">
+                    ${person.name} ,
+                </c:forEach>
 
             </div>
         </main>
