@@ -1,29 +1,21 @@
 package com.alesjdev.movierating.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Genre {
 
+    @JsonProperty("id")
     private int id;
 
+    @JsonProperty("name")
     private String name;
 
     private Set<Movie> movieList = new HashSet<>();
-
-
-    // Constructors
-    public Genre() {
-    }
-
-    public Genre(String name) {
-        this.name = name;
-    }
-
-    public Genre(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
 
     // Getters and Setters

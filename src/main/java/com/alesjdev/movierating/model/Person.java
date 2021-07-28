@@ -1,60 +1,60 @@
 package com.alesjdev.movierating.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
 
+    @JsonProperty("id")
     private int id;
 
+    @JsonProperty("name")
     private String name;
 
-    private List<String> also_known_as;
+    @JsonProperty("original_name")
+    private String originalName;
 
-    private String known_for_department;
+    @JsonProperty("adult")
+    private boolean adult;
 
+    @JsonProperty("known_for_department")
+    private String knownForDepartment;
+
+    @JsonProperty("popularity")
+    private int popularity;
+
+    @JsonProperty("profile_path")
+    private String profilePath;
+
+    @JsonProperty("character")
+    private String character;
+
+    @JsonProperty("also_known_as")
+    private List<String> alsoKnownAs;
+
+    @JsonProperty("birthday")
     private String birthday;
 
+    @JsonProperty("deathday")
     private String deathday;
 
-    private int gender;
-
+    @JsonProperty("biography")
     private String biography;
 
+    @JsonProperty("place_of_birth")
     private String place_of_birth;
 
+    @JsonProperty("imdb_id")
     private String imdb_id;
 
     private Set<Movie> movies = new HashSet<>();
 
     private List<Profile> profiles;  // List of images
-
-
-    // Constructors
-    public Person() {
-    }
-
-    public Person(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Person(int id, String name, List<String> also_known_as, String known_for_department, String birthday, String deathday, int gender, String biography, String place_of_birth, String imdb_id, Set<Movie> movies, List<Profile> profiles) {
-        this.id = id;
-        this.name = name;
-        this.also_known_as = also_known_as;
-        this.known_for_department = known_for_department;
-        this.birthday = birthday;
-        this.deathday = deathday;
-        this.gender = gender;
-        this.biography = biography;
-        this.place_of_birth = place_of_birth;
-        this.imdb_id = imdb_id;
-        this.movies = movies;
-        this.profiles = profiles;
-    }
 
 
     // Getters and Setters
@@ -74,28 +74,60 @@ public class Person {
         this.name = name;
     }
 
-    public List<String> getAlso_known_as() {
-        return also_known_as;
+    public String getOriginalName() {
+        return originalName;
     }
 
-    public void setAlso_known_as(List<String> also_known_as) {
-        this.also_known_as = also_known_as;
+    public void setOriginalName(String originalName) {
+        this.originalName = originalName;
     }
 
-    public List<Profile> getProfiles() {
-        return profiles;
+    public boolean isAdult() {
+        return adult;
     }
 
-    public void setProfiles(List<Profile> profiles) {
-        this.profiles = profiles;
+    public void setAdult(boolean adult) {
+        this.adult = adult;
     }
 
-    public String getKnown_for_department() {
-        return known_for_department;
+    public String getKnownForDepartment() {
+        return knownForDepartment;
     }
 
-    public void setKnown_for_department(String known_for_department) {
-        this.known_for_department = known_for_department;
+    public void setKnownForDepartment(String knownForDepartment) {
+        this.knownForDepartment = knownForDepartment;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
+    public String getProfilePath() {
+        return profilePath;
+    }
+
+    public void setProfilePath(String profilePath) {
+        this.profilePath = profilePath;
+    }
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    public List<String> getAlsoKnownAs() {
+        return alsoKnownAs;
+    }
+
+    public void setAlsoKnownAs(List<String> alsoKnownAs) {
+        this.alsoKnownAs = alsoKnownAs;
     }
 
     public String getBirthday() {
@@ -112,14 +144,6 @@ public class Person {
 
     public void setDeathday(String deathday) {
         this.deathday = deathday;
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
     }
 
     public String getBiography() {
@@ -152,6 +176,14 @@ public class Person {
 
     public void setMovies(Set<Movie> movies) {
         this.movies = movies;
+    }
+
+    public List<Profile> getProfiles() {
+        return profiles;
+    }
+
+    public void setProfiles(List<Profile> profiles) {
+        this.profiles = profiles;
     }
 }
 

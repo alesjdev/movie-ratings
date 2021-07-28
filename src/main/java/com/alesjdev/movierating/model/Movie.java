@@ -32,6 +32,9 @@ public class Movie {
     @JsonProperty("original_title")
     private String originalTitle;
 
+    @JsonProperty("tagline")
+    private String tagline;
+
     @JsonProperty("overview")
     private String overview;
 
@@ -61,6 +64,7 @@ public class Movie {
 
     private Set<Person> people = new HashSet<>();
 
+    @JsonProperty("genres")
     private Set<Genre> genres = new HashSet<>();
 
     private Set<Review> reviews = new HashSet<>();
@@ -211,24 +215,34 @@ public class Movie {
         this.reviews = reviews;
     }
 
+    public String getTagline() {
+        return tagline;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
                 "id=" + id +
                 ", imdbId='" + imdbId + '\'' +
-                ", budget=" + budget +
+                ", budget='" + budget + '\'' +
                 ", originalLanguage='" + originalLanguage + '\'' +
                 ", title='" + title + '\'' +
                 ", originalTitle='" + originalTitle + '\'' +
+                ", tagline='" + tagline + '\'' +
                 ", overview='" + overview + '\'' +
                 ", backdropPath='" + backdropPath + '\'' +
                 ", posterPath='" + posterPath + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
-                ", revenue=" + revenue +
+                ", revenue='" + revenue + '\'' +
                 ", popularity=" + popularity +
                 ", runtime=" + runtime +
                 ", status='" + status + '\'' +
                 ", adult=" + adult +
+                ", genres=" + genres +
                 '}';
     }
 }
