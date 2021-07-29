@@ -54,14 +54,14 @@
                 </div>
                 <hr>
                 <!-- Cast-->
-                <div class="row" style="opacity:0.85">
+                <div class="row" style="opacity:0.95">
                     <!-- Movie image card -->
                     <c:forEach var="person" items="${movie.cast}">
                         <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4">
                             <div class="card text-white bg-dark mb-4" style="max-width: 18rem;">
                                 <div class="card-body">
                                     <a href="castDetail?castId=${person.id}">
-                                        <img src="${person.profilePath}" alt="${person.name}"
+                                        <img src="${person.profileSmall}" alt="${person.name}"
                                              style="max-width: 100%; height: auto;">
                                     </a>
                                 </div>

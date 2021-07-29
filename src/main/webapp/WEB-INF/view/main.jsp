@@ -31,7 +31,7 @@
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-4">
                                 <div class="card text-white bg-dark mb-4" style="max-width: 18rem;">
                                     <div class="card-body">
-                                        <a href="movie?movieId=${movie.id}"><img src="${movie.posterPath}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
+                                        <a href="movie?movieId=${movie.id}"><img src="${movie.posterSmall}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="movie?movieId=${movie.id}">${movie.title}</a>
@@ -55,7 +55,7 @@
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-4">
                                 <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
                                     <div class="card-body">
-                                        <a href="movie?movieId=${movie.id}"><img src="${movie.posterPath}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
+                                        <a href="movie?movieId=${movie.id}"><img src="${movie.posterSmall}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="movie?movieId=${movie.id}">${movie.title}</a>
@@ -79,7 +79,7 @@
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-4">
                                 <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
                                     <div class="card-body">
-                                        <a href="movie?movieId=${movie.id}"><img src="${movie.posterPath}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
+                                        <a href="movie?movieId=${movie.id}"><img src="${movie.posterSmall}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="movie?movieId=${movie.id}">${movie.title}</a>

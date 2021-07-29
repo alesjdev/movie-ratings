@@ -3,15 +3,19 @@ package com.alesjdev.movierating.model;
 import com.alesjdev.movierating.entity.Review;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
 
-//    @Value("${tmdb.image-path}")
-//    private String IMAGE_PATH;  // Path prefix to add to the image links
+    private final String IMAGE_PATH_ORIGINAL = "https://image.tmdb.org/t/p/original";
+    private final String IMAGE_PATH_W300 = "https://image.tmdb.org/t/p/w300";
+
 
     @JsonProperty("id")
     private int id;
@@ -95,6 +99,14 @@ public class Movie {
         this.budget = budget > 0 ? "$ " + budget : "Not available";
     }
 
+    public String getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(int revenue) {
+        this.revenue = revenue > 0 ? "$ " + revenue : "Not available";
+    }
+
     public String getOriginalLanguage() {
         return originalLanguage;
     }
@@ -128,19 +140,23 @@ public class Movie {
     }
 
     public String getBackdropPath() {
-        return backdropPath;
+        return IMAGE_PATH_ORIGINAL + backdropPath;
     }
 
     public void setBackdropPath(String backdropPath) {
-        this.backdropPath = "https://image.tmdb.org/t/p/original" + backdropPath;
+        this.backdropPath = backdropPath;
     }
 
     public String getPosterPath() {
-        return posterPath;
+        return IMAGE_PATH_ORIGINAL + posterPath;
     }
 
     public void setPosterPath(String posterPath) {
-        this.posterPath = "https://image.tmdb.org/t/p/original" + posterPath;
+        this.posterPath = posterPath;
+    }
+
+    public String getPosterSmall() {
+        return IMAGE_PATH_W300 + posterPath;
     }
 
     public String getReleaseDate() {
@@ -149,14 +165,6 @@ public class Movie {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    public String getRevenue() {
-        return revenue;
-    }
-
-    public void setRevenue(int revenue) {
-        this.revenue = revenue > 0 ? "$ " + revenue : "Not available";
     }
 
     public int getPopularity() {
@@ -222,6 +230,7 @@ public class Movie {
     public void setTagline(String tagline) {
         this.tagline = tagline;
     }
+
 
     @Override
     public String toString() {

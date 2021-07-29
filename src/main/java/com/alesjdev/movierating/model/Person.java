@@ -10,6 +10,11 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
 
+    private final String IMAGE_PATH_ORIGINAL = "https://image.tmdb.org/t/p/original";
+    private final String IMAGE_PATH_W300 = "https://image.tmdb.org/t/p/w300";
+    private final String PICTURE_NOT_FOUND =
+            "assets/img/pic-not-available.png";
+
     @JsonProperty("id")
     private int id;
 
@@ -54,7 +59,7 @@ public class Person {
 
     private Set<Movie> movies = new HashSet<>();
 
-    private List<Profile> profiles;  // List of images
+    private List<Image> images;  // List of images
 
 
     // Getters and Setters
@@ -106,14 +111,18 @@ public class Person {
         this.popularity = popularity;
     }
 
-    public String getProfilePath() {
-        return profilePath;
+    public void setProfilePath(String profilePath) {
+        this.profilePath = profilePath;
     }
 
-    public void setProfilePath(String profilePath) {
-        this.profilePath = profilePath != null ?
-                "https://image.tmdb.org/t/p/original" + profilePath :
-                "https://2gyntc2a2i9a22ifya16a222-wpengine.netdna-ssl.com/wp-content/uploads/sites/29/2014/12/Image-Not-Available.jpg";
+    public String getProfilePath() {
+        return profilePath != null ?
+                IMAGE_PATH_ORIGINAL + profilePath : PICTURE_NOT_FOUND;
+    }
+
+    public String getProfileSmall() {
+        return profilePath != null ?
+                IMAGE_PATH_W300 + profilePath : PICTURE_NOT_FOUND;
     }
 
     public String getCharacter() {
@@ -180,12 +189,12 @@ public class Person {
         this.movies = movies;
     }
 
-    public List<Profile> getProfiles() {
-        return profiles;
+    public List<Image> getProfiles() {
+        return images;
     }
 
-    public void setProfiles(List<Profile> profiles) {
-        this.profiles = profiles;
+    public void setProfiles(List<Image> images) {
+        this.images = images;
     }
 
     @Override
