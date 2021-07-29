@@ -85,11 +85,11 @@ public class Movie {
     }
 
     public String getImdbId() {
-        return imdbId;
+        return "https://www.imdb.com/title/" + imdbId;
     }
 
     public void setImdbId(String imdbId) {
-        this.imdbId = "https://www.imdb.com/title/" + imdbId;
+        this.imdbId = imdbId;
     }
 
     public String getBudget() {

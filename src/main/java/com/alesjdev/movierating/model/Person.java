@@ -52,10 +52,13 @@ public class Person {
     private String biography;
 
     @JsonProperty("place_of_birth")
-    private String place_of_birth;
+    private String placeOfBirth;
 
     @JsonProperty("imdb_id")
-    private String imdb_id;
+    private String imdbId;
+
+    @JsonProperty("homepage")
+    private String homepage;
 
     private Set<Movie> movies = new HashSet<>();
 
@@ -165,20 +168,20 @@ public class Person {
         this.biography = biography;
     }
 
-    public String getPlace_of_birth() {
-        return place_of_birth;
+    public String getPlaceOfBirth() {
+        return placeOfBirth;
     }
 
-    public void setPlace_of_birth(String place_of_birth) {
-        this.place_of_birth = place_of_birth;
+    public void setPlaceOfBirth(String placeOfBirth) {
+        this.placeOfBirth = placeOfBirth;
     }
 
-    public String getImdb_id() {
-        return imdb_id;
+    public String getImdbId() {
+        return "https://www.imdb.com/name/" + imdbId;
     }
 
-    public void setImdb_id(String imdb_id) {
-        this.imdb_id = imdb_id;
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
     }
 
     public Set<Movie> getMovies() {
@@ -197,6 +200,22 @@ public class Person {
         this.images = images;
     }
 
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -212,8 +231,8 @@ public class Person {
                 ", birthday='" + birthday + '\'' +
                 ", deathday='" + deathday + '\'' +
                 ", biography='" + biography + '\'' +
-                ", place_of_birth='" + place_of_birth + '\'' +
-                ", imdb_id='" + imdb_id + '\'' +
+                ", place_of_birth='" + placeOfBirth + '\'' +
+                ", imdb_id='" + imdbId + '\'' +
                 '}';
     }
 }
