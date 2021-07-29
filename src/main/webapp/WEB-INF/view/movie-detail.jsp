@@ -25,11 +25,11 @@
                 <br>
                 <div class="row" style="opacity:0.85">
                     <!-- Movie image card -->
-                    <div class="col-sm-3 col-3 card text-white bg-dark card-body">
-                        <img src="${movie.posterPath}" style="max-width: 100%; height: auto;" alt="${movie.title}">
+                    <div class="col-sm-3 col-3 card text-white bg-dark card-body" style="max-width: 300px">
+                        <img src="${movie.posterSmall}" style="max-width: 100%; height: auto;" alt="${movie.title}">
                     </div>
                     <!-- Details card -->
-                    <div class="col-sm-9 col-9 card text-white bg-dark">
+                    <div class="col-sm-9 col-9 card text-white bg-dark card-body">
                         <div class="card-body">
                             <b class="h1">${movie.title} </b> <span style="color: lightgray"> (${movie.originalTitle})</span><br><br>
                             <i class="h5">${movie.tagline}</i>
@@ -49,31 +49,31 @@
                                 <a href="moviesByGenre?genreName=${genre.name}&genreId=${genre.id}"
                                    class="btn btn-info">${genre.name} </a>
                             </c:forEach>
+                            <br><br>
+                            <hr>
+                            <p>Cast:</p>
+                                <!-- Cast cards -->
+                                <c:forEach var="person" items="${movie.cast}">
+                                    <div class="card text-white bg-dark mb-4" style="max-width: 10rem; display:inline-block;">
+                                        <div class="card-body">
+                                            <a href="castDetail?castId=${person.id}">
+                                                <img src="${person.profileSmall}" alt="${person.name}"
+                                                     style="max-width: 100%; height: auto;">
+                                            </a>
+                                        </div>
+                                        <div class="card-footer d-flex align-items-center justify-content-between">
+                                            <a class="small text-white stretched-link" href="castDetail?castId=${person.id}">
+                                                ${person.name}<br>(<span style="color: gold">${person.character}</span>)
+                                            </a>
+                                        </div>
+                                    </div>
+                                </c:forEach>
                         </div>
                     </div>
                     <!-- End of movie tags -->
                 </div>
                 <hr>
-                <!-- Cast-->
-                <div class="row" style="opacity:0.95">
-                    <!-- Movie image card -->
-                    <c:forEach var="person" items="${movie.cast}">
-                        <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4">
-                            <div class="card text-white bg-dark mb-4" style="max-width: 18rem;">
-                                <div class="card-body">
-                                    <a href="castDetail?castId=${person.id}">
-                                        <img src="${person.profileSmall}" alt="${person.name}"
-                                             style="max-width: 100%; height: auto;">
-                                    </a>
-                                </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="castDetail?castId=${person.id}">${person.name}</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </div>
+
             </div>
         </main>
         <jsp:include page="frame/footer.jsp" />

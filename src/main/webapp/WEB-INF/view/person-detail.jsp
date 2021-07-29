@@ -33,27 +33,27 @@ background-position: center;">
                         <div class="card-body">
                             <!-- Person details -->
                             <b class="h1">${person.name} </b>
-                            <c:if test = "${person.originalName != null}">
+                            <c:if test = "${not empty person.originalName}">
                                 <span style="color: lightgray"> (${person.originalName})</span>
                             </c:if><br><br>
-                            <i class="h5">${person.placeOfBirth}</i>
+                            <i class="fas fa-map-marker-alt"></i> <i class="h5"> ${person.placeOfBirth}</i>
                             <br><br><br>
                             <p>${person.biography}</p>
                             <br>
 
-                            <c:if test = "${person.alsoKnownAs != null}">
+                            <c:if test = "${not empty person.alsoKnownAs}">
                                 <p>Also known as: <span style="color: gold">${person.alsoKnownAs}</span></p>
                             </c:if>
 
-                            <c:if test = "${person.birthday != null}">
+                            <c:if test = "${not empty person.birthday}">
                                 <p>Birthday: <span style="color: cyan">${person.birthday}</span></p>
                             </c:if>
 
-                            <c:if test = "${person.deathday != null}">
+                            <c:if test = "${not empty person.deathday}">
                                 <p>Death: <span style="color: tomato">${person.deathday}</span></p>
                             </c:if>
                             <p>Popularity: <span style="color: hotpink">${person.popularity}</span></p><br>
-                            <c:if test = "${person.homepage != null}">
+                            <c:if test = "${not empty person.homepage}">
                                 <a href="${person.homepage}" class="btn btn-info">Homepage</a><br><br>
                             </c:if>
 
@@ -70,9 +70,11 @@ background-position: center;">
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a href="movie?movieId=${movie.id}" class="small text-white stretched-link">
-                                            ${movie.title} (<span style="color: cyan">${movie.character}</span>)
+                                            ${movie.title}<br>
+                                            <c:if test = "${not empty movie.character}">
+                                                (<span style="color: cyan">${movie.character}</span>)
+                                            </c:if>
                                         </a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </c:forEach>
