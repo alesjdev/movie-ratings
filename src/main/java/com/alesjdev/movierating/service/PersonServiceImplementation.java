@@ -1,5 +1,6 @@
 package com.alesjdev.movierating.service;
 
+import com.alesjdev.movierating.model.Movie;
 import com.alesjdev.movierating.model.Person;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +28,8 @@ public class PersonServiceImplementation implements PersonService {
         Person thePerson = null;
         try {
             thePerson = mapper.readValue(new URL(PREFIX_PATH + from + "?" + API_KEY), Person.class );
+            Person asCast = mapper.readValue(new URL(PREFIX_PATH + from + "/movie_credits" + "?" + API_KEY), Person.class );
+            thePerson.setMovies(asCast.getMovies());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -60,6 +60,7 @@ public class Person {
     @JsonProperty("homepage")
     private String homepage;
 
+    @JsonProperty("cast")
     private Set<Movie> movies = new HashSet<>();
 
     private List<Image> images;  // List of images

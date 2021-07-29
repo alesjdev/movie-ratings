@@ -25,12 +25,13 @@ background-position: center;">
                 <br>
                 <div class="row" style="opacity:0.85">
                     <!-- Person image card -->
-                    <div class="col-sm-3 col-3 card text-white bg-dark card-body">
+                    <div class="col-sm-3 col-3 card text-white bg-dark card-body" style="max-width: 300px">
                         <img src="${person.profileSmall}" style="max-width: 100%; height: auto;" alt="${person.name}">
                     </div>
                     <!-- Details card -->
-                    <div class="col-sm-9 col-9 card text-white bg-dark">
+                    <div class="col-sm-9 col-9 card text-white bg-dark card-body">
                         <div class="card-body">
+                            <!-- Person details -->
                             <b class="h1">${person.name} </b>
                             <c:if test = "${person.originalName != null}">
                                 <span style="color: lightgray"> (${person.originalName})</span>
@@ -57,9 +58,27 @@ background-position: center;">
                             </c:if>
 
                             <a href="${person.imdbId}" class="btn btn-warning">IMDB Page</a><br><br>
+                            <!-- End of person details -->
+                            <hr>
+                            
+                            <p>Known for:</p>
+                            <!-- Known for movies -->
+                            <c:forEach var="movie" items="${person.movies}">
+                                <div class="card text-white bg-dark mb-4" style="max-width: 10rem; display:inline-block;">
+                                    <div class="card-body">
+                                        <a href="movie?movieId=${movie.id}"><img src="${movie.posterSmall}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a href="movie?movieId=${movie.id}" class="small text-white stretched-link">
+                                            ${movie.title} (<span style="color: cyan">${movie.character}</span>)
+                                        </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                            <!-- End of movies known for -->
                         </div>
                     </div>
-                    <!-- End of person details -->
                 </div>
                 <hr>
                 

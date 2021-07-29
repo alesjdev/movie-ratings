@@ -69,6 +69,9 @@ public class Movie {
     @JsonProperty("cast")
     private Set<Person> cast = new HashSet<>();
 
+    @JsonProperty("character")
+    private String character;
+
     @JsonProperty("genres")
     private Set<Genre> genres = new HashSet<>();
 
@@ -232,6 +235,13 @@ public class Movie {
         this.tagline = tagline;
     }
 
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
 
     @Override
     public String toString() {
