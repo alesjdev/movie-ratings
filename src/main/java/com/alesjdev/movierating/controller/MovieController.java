@@ -27,5 +27,12 @@ public class MovieController {
         return "movie-detail";
     }
 
+    @GetMapping("/moviesByGenre")
+    public String moviesByGenre(@RequestParam int genreId, @RequestParam String genreName, Model theModel){
+        theModel.addAttribute("movieResults", theMovieService.findByGenre(genreId));
+        theModel.addAttribute("keyword", genreName);
+        return "movie-results";
+    }
+
 
 }

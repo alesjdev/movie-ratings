@@ -10,4 +10,5 @@ public interface MovieService {
     public Set<Movie> findTopRated();
     public Set<Movie> findUpcoming();
     public Movie findById(int movieId);
+    public Set<Movie> findByGenre(int genreId);
 }

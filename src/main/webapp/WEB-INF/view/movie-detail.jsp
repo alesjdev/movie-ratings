@@ -46,7 +46,8 @@
                             <a href="${movie.imdbId}" class="btn btn-warning">IMDB Page</a><br><br>
                             <!-- Genres -->
                             <c:forEach var="genre" items="${movie.genres}">
-                                <a href="moviesByGenre?genreId=${genre.id}" class="btn btn-info">${genre.name} </a>
+                                <a href="moviesByGenre?genreName=${genre.name}&genreId=${genre.id}"
+                                   class="btn btn-info">${genre.name} </a>
                             </c:forEach>
                         </div>
                     </div>
