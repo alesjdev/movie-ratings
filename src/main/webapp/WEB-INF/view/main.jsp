@@ -12,24 +12,28 @@
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed text-white" style="background-image: url('assets/img/collage.jpeg');
+              background-size: cover;
+              background-attachment: fixed;
+              background-position: center;">
     <jsp:include page="frame/navbar-top.jsp" />
     <div id="layoutSidenav">
         <jsp:include page="frame/navbar-side.jsp" />
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Movies</h1>
-
                     <!-- Popular movies -->
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Popular</li>
-                    </ol>
+                    <br>
+                    <div class="card text-white bg-dark mb-4" style="width: 100%">
+                        <div class="card-body text-center">
+                            Popular
+                        </div>
+                    </div>
                     <div class="row">
                         <!-- Movie cards -->
                         <c:forEach var="movie" items="${popularMovies}">
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-4">
-                                <div class="card text-white bg-dark mb-4" style="max-width: 18rem;">
+                                <div class="card text-white bg-dark mb-4" style="max-width: 20rem;">
                                     <div class="card-body">
                                         <a href="movie?movieId=${movie.id}"><img src="${movie.posterSmall}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
                                     </div>
@@ -46,9 +50,11 @@
                     <br><hr><br>
 
                     <!-- Top-rated movies -->
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Top rated</li>
-                    </ol>
+                    <div class="card text-white bg-dark mb-4" style="width: 100%">
+                        <div class="card-body text-center">
+                            Top rated
+                        </div>
+                    </div>
                     <div class="row">
                         <!-- Movie cards -->
                         <c:forEach var="movie" items="${topRatedMovies}">
@@ -70,9 +76,11 @@
                     <br><hr><br>
 
                     <!-- Upcoming movies -->
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Upcoming</li>
-                    </ol>
+                    <div class="card text-white bg-dark mb-4" style="width: 100%">
+                        <div class="card-body text-center">
+                            Upcoming
+                        </div>
+                    </div>
                     <div class="row">
                         <!-- Movie cards -->
                         <c:forEach var="movie" items="${upcomingMovies}">

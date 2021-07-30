@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
@@ -74,6 +76,13 @@ public class Movie {
 
     @JsonProperty("genres")
     private Set<Genre> genres = new HashSet<>();
+
+    // Images
+    @JsonProperty("backdrops")
+    Set<Image> backdrops = new HashSet<>();
+
+    @JsonProperty("posters")
+    Set<Image> posters = new HashSet<>();
 
     private Set<Review> reviews = new HashSet<>();
 
@@ -241,6 +250,22 @@ public class Movie {
 
     public void setCharacter(String character) {
         this.character = character;
+    }
+
+    public Set<Image> getBackdrops() {
+        return backdrops;
+    }
+
+    public void setBackdrops(Set<Image> backdrops) {
+        this.backdrops = backdrops;
+    }
+
+    public Set<Image> getPosters() {
+        return posters;
+    }
+
+    public void setPosters(Set<Image> posters) {
+        this.posters = posters;
     }
 
     @Override

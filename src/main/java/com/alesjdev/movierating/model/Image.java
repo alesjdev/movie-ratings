@@ -1,22 +1,27 @@
 package com.alesjdev.movierating.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Image {
 
-    private String file_path;
+    @JsonProperty("file_path")
+    private String filePath;
 
+    @JsonProperty("height")
     private int height;
 
+    @JsonProperty("width")
     private int width;
 
 
     // Getters and Setters
     public String getFile_path() {
-        return file_path;
+        return filePath;
     }
 
-    public void setFile_path(String file_path) {
-        this.file_path = file_path;
+    public void setFile_path(String filePath) {
+        this.filePath = filePath;
     }
 
     public int getHeight() {
