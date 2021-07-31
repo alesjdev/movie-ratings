@@ -16,6 +16,6 @@ public class PersonController {
     @GetMapping("/castDetail")
     public String getCastDetail(@RequestParam int castId, Model theModel){
         theModel.addAttribute("person", personService.findById(castId));
-        return "person-detail";
+        return "person/person-detail";
     }
 }

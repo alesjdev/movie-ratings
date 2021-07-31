@@ -18,20 +18,20 @@ public class MovieController {
         theModel.addAttribute("popularMovies", theMovieService.findPopular());
         theModel.addAttribute("topRatedMovies", theMovieService.findTopRated());
         theModel.addAttribute("upcomingMovies", theMovieService.findUpcoming());
-        return "main";
+        return "movie/main";
     }
 
     @GetMapping("/movie")  // Get movie by Id and display all details
     public String movieDetails(@RequestParam int movieId, Model theModel){
         theModel.addAttribute("movie", theMovieService.findById(movieId));
-        return "movie-detail";
+        return "movie/movie-detail";
     }
 
     @GetMapping("/moviesByGenre")
     public String moviesByGenre(@RequestParam int genreId, @RequestParam String genreName, Model theModel){
         theModel.addAttribute("movieResults", theMovieService.findByGenre(genreId));
         theModel.addAttribute("keyword", genreName);
-        return "movie-results";
+        return "movie/movie-results";
     }
 
 

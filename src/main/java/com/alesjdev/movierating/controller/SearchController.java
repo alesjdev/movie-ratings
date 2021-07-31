@@ -23,6 +23,6 @@ public class SearchController {
         theModel.addAttribute("movies", movieService.findByKeyword(keyword));
         theModel.addAttribute("people", personService.findByKeyword(keyword));
         theModel.addAttribute("keyword", keyword);
-        return "search-results";
+        return "search/search-results";
     }
 }

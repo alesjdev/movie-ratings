@@ -16,9 +16,9 @@
               background-size: cover;
               background-attachment: fixed;
               background-position: center;">
-    <jsp:include page="frame/navbar-top.jsp" />
+    <jsp:include page="../frame/navbar-top.jsp" />
     <div id="layoutSidenav">
-        <jsp:include page="frame/navbar-side.jsp" />
+        <jsp:include page="../frame/navbar-side.jsp" />
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -102,7 +102,7 @@
 
                 </div>
             </main>
-            <jsp:include page="frame/footer.jsp" />
+            <jsp:include page="../frame/footer.jsp" />
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
