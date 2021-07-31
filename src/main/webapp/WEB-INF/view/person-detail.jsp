@@ -23,7 +23,7 @@ background-position: center;">
         <main>
             <div class="container-fluid px-4">
                 <br>
-                <div class="row" style="opacity:0.85">
+                <div class="row" style="opacity:0.9">
                     <!-- Person image card -->
                     <div class="col-sm-3 col-3 card text-white bg-dark card-body" style="max-width: 300px">
                         <img src="${person.profileSmall}" style="max-width: 100%; height: auto;" alt="${person.name}">
@@ -61,7 +61,7 @@ background-position: center;">
                             <!-- End of person details -->
                             <hr>
                             
-                            <p>Known for:</p>
+                            <p>Known for movies:</p>
                             <!-- Known for movies -->
                             <c:forEach var="movie" items="${person.movies}">
                                 <div class="card text-white bg-dark mb-4" style="max-width: 10rem; display:inline-block;">

@@ -11,4 +11,5 @@ public interface MovieService {
     public Set<Movie> findUpcoming();
     public Movie findById(int movieId);
     public Set<Movie> findByGenre(int genreId);
+    public Set<Movie> findByKeyword(String keyword);
 }

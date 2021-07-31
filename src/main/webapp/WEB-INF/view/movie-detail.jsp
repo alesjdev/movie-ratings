@@ -23,7 +23,7 @@
         <main>
             <div class="container-fluid px-4">
                 <br>
-                <div class="row" style="opacity:0.85">
+                <div class="row" style="opacity:0.9">
                     <!-- Movie image card -->
                     <div class="col-sm-3 col-3 card text-white bg-dark card-body" style="max-width: 300px">
                         <img src="${movie.posterSmall}" style="max-width: 100%; height: auto;" alt="${movie.title}">

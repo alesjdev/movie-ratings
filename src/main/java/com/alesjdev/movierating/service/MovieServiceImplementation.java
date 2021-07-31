@@ -1,16 +1,13 @@
 package com.alesjdev.movierating.service;
 
 import com.alesjdev.movierating.model.Movie;
-import com.alesjdev.movierating.model.Person;
-import com.alesjdev.movierating.model.Results;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.alesjdev.movierating.model.MovieSearch;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -47,17 +44,22 @@ public class MovieServiceImplementation implements MovieService {
         return obtainMovieListByGenre("/discover/movie", genreId);
     }
 
+    @Override
+    public Set<Movie> findByKeyword(String keyword) {
+        return obtainMovieListByKeyword("/search/movie", keyword);
+    }
+
 
     private Set<Movie> obtainMovieList(String from){
         ObjectMapper mapper = new ObjectMapper();
-        Results results = null;
+        MovieSearch movieSearch = null;
         try {
-            results = mapper.readValue(new URL(PREFIX_PATH + from + "?" + API_KEY), Results.class );
+            movieSearch = mapper.readValue(new URL(PREFIX_PATH + from + "?" + API_KEY), MovieSearch.class );
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (results != null) {
-            return results.getMovies();
+        if (movieSearch != null) {
+            return movieSearch.getMovies();
         } else {
             throw new RuntimeException("There was a problem fetching the data from the API.");
         }
@@ -65,19 +67,38 @@ public class MovieServiceImplementation implements MovieService {
 
     private Set<Movie> obtainMovieListByGenre(String from, int genreId){
         ObjectMapper mapper = new ObjectMapper();
-        Results results = null;
+        MovieSearch movieSearch = null;
         try {
-            results = mapper.readValue(new URL(PREFIX_PATH + from
+            movieSearch = mapper.readValue(new URL(PREFIX_PATH + from
                     + "?" + API_KEY
                     + "&" + "with_genres=" + genreId
                     + "&" + "include_adult=" + false
                     + "&" + "sort_by=" + "popularity.desc"),
-                        Results.class );
+                        MovieSearch.class );
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (results != null) {
-            return results.getMovies();
+        if (movieSearch != null) {
+            return movieSearch.getMovies();
+        } else {
+            throw new RuntimeException("There was a problem fetching the data from the API.");
+        }
+    }
+
+    private Set<Movie> obtainMovieListByKeyword(String from, String keyword){
+        ObjectMapper mapper = new ObjectMapper();
+        MovieSearch movieSearch = null;
+        try {
+            movieSearch = mapper.readValue(new URL(PREFIX_PATH + from
+                            + "?" + API_KEY
+                            + "&" + "query=" + keyword
+                            + "&" + "include_adult=" + false),
+                    MovieSearch.class );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (movieSearch != null) {
+            return movieSearch.getMovies();
         } else {
             throw new RuntimeException("There was a problem fetching the data from the API.");
         }

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
@@ -141,8 +142,11 @@ public class Person {
         return alsoKnownAs;
     }
 
-    public void setAlsoKnownAs(List<String> alsoKnownAs) {
-        this.alsoKnownAs = alsoKnownAs;
+    public void setAlsoKnownAs(List<String> aka) {
+        alsoKnownAs = aka.stream()
+                // Filter all non latin characters that could cause display errors
+                .filter(s -> s.matches("^[\\p{Print}\\p{IsLatin}]*$"))
+                .collect(Collectors.toList());
     }
 
     public String getBirthday() {

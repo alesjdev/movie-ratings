@@ -7,26 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Main page</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed text-white" style="background-image: url('assets/img/theatre.jpg');
+              background-size: cover;
+              background-attachment: fixed;
+              background-position: center;">
 <jsp:include page="frame/navbar-top.jsp" />
 <div id="layoutSidenav">
     <jsp:include page="frame/navbar-side.jsp" />
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <!-- Movies by keyword -->
-                <h4 class="mt-4">Most popular movies related to: <span style="color: crimson">${keyword}</span></h4>
+                <!-- Movie results -->
                 <br>
+                <div class="card text-white bg-dark mb-4" style="width: 100%">
+                    <div class="card-body text-center">
+                        Movie results for: ${keyword}
+                    </div>
+                </div>
                 <div class="row">
                     <!-- Movie cards -->
-                    <c:forEach var="movie" items="${movieSearch}">
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-4">
-                            <div class="card text-white bg-dark mb-4" style="max-width: 18rem;">
+                    <c:forEach var="movie" items="${movies}">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4">
+                            <div class="card text-white bg-dark mb-4" style="max-width: 20rem;">
                                 <div class="card-body">
                                     <a href="movie?movieId=${movie.id}"><img src="${movie.posterSmall}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
                                 </div>
@@ -39,8 +46,35 @@
                     </c:forEach>
                     <!-- End of movie tags -->
                 </div>
-                <!-- End of movies by keyword -->
+                <!-- End of movie results -->
                 <br><hr><br>
+
+                <!-- People results -->
+                <div class="card text-white bg-dark mb-4" style="width: 100%">
+                    <div class="card-body text-center">
+                        People results for: ${keyword}
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- People cards -->
+                    <c:forEach var="person" items="${people}">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4">
+                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                                <div class="card-body">
+                                    <a href="castDetail?castId=${person.id}"><img src="${person.profileSmall}" style="max-width: 100%; height: auto;" alt="${person.name}"></a>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="castDetail?castId=${person.id}">${person.name}</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <!-- End of people cards -->
+                </div>
+                <!-- End of people results -->
+                <br><hr><br>
+
             </div>
         </main>
         <jsp:include page="frame/footer.jsp" />
