@@ -2,6 +2,7 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
+                <!-- Movies submenu -->
                 <div class="sb-sidenav-menu-heading">Movies</div>
                 <a class="nav-link" href="${pageContext.request.contextPath}/movie/popular">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -15,7 +16,16 @@
                     <div class="sb-nav-link-icon"><i class="far fa-clock"></i></div>
                     Upcoming
                 </a>
+
+                <!-- People submenu -->
                 <div class="sb-sidenav-menu-heading">People</div>
+                <a class="nav-link" href="${pageContext.request.contextPath}/person/popular">
+                    <div class="sb-nav-link-icon"><i class="fas fa-child"></i></div>
+                    Popular
+                </a>
+
+                <!-- Placeholders -->
+                <div class="sb-sidenav-menu-heading">Placeholders</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     TODO

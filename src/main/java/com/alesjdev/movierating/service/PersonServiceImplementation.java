@@ -28,10 +28,33 @@ public class PersonServiceImplementation implements PersonService {
 
     @Override
     public Set<Person> findByKeyword(String keyword) {
-        return obtainPeopleListByKeyword("/search/person", keyword);
+        return obtainPeopleByKeyword("/search/person", keyword);
     }
 
-    private Set<Person> obtainPeopleListByKeyword(String from, String keyword) {
+    @Override
+    public Set<Person> findPopular() {
+        return obtainPeople("/person/popular");
+    }
+
+    private Set<Person> obtainPeople(String from) {
+        ObjectMapper mapper = new ObjectMapper();
+        PersonSearch personSearch = null;
+        try {
+            personSearch = mapper.readValue(new URL(PREFIX_PATH
+                            + from
+                            + "?" + API_KEY),
+                    PersonSearch.class );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (personSearch != null) {
+            return personSearch.getPeople();
+        } else {
+            throw new RuntimeException("There was a problem fetching the data from the API.");
+        }
+    }
+
+    private Set<Person> obtainPeopleByKeyword(String from, String keyword) {
         ObjectMapper mapper = new ObjectMapper();
         PersonSearch personSearch = null;
         try {

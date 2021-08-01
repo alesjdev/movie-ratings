@@ -16,8 +16,15 @@ public class PersonController {
     private PersonService personService;
 
     @GetMapping("/byId")
-    public String getCastDetail(@RequestParam int castId, Model theModel){
+    public String getPersonDetail(@RequestParam int castId, Model theModel){
         theModel.addAttribute("person", personService.findById(castId));
         return "person/person-detail";
+    }
+
+    @GetMapping("/popular")
+    public String getPopular(Model theModel){
+        theModel.addAttribute("people", personService.findPopular());
+        theModel.addAttribute("keyword", "Popular");
+        return "person/person-results";
     }
 }

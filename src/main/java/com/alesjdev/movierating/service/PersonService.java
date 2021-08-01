@@ -8,4 +8,5 @@ import java.util.Set;
 public interface PersonService {
     public Person findById(int personId);
     public Set<Person> findByKeyword(String keyword);
+    public Set<Person> findPopular();
 }
