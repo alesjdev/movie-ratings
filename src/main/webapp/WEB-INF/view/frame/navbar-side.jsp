@@ -3,17 +3,17 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Movies</div>
-                <a class="nav-link" href="${pageContext.request.contextPath}">
+                <a class="nav-link" href="${pageContext.request.contextPath}/movie/popular">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Trending
+                    Popular
                 </a>
-                <a class="nav-link" href="${pageContext.request.contextPath}">
+                <a class="nav-link" href="${pageContext.request.contextPath}/movie/top">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Trending
+                    Top Rated
                 </a>
-                <a class="nav-link" href="${pageContext.request.contextPath}">
+                <a class="nav-link" href="${pageContext.request.contextPath}/movie/upcoming">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Trending
+                    Upcoming
                 </a>
                 <div class="sb-sidenav-menu-heading">People</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">

@@ -1,11 +1,12 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}">The Movie Reviews</a>
+    <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}/movie/popular">The Movie Reviews</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
 
     <!-- Navbar Search-->
-    <form class="d-md-inline-block form-inline ms-auto me-0 me-md-auto my-2 my-md-0" action="search" method="GET" style="width: 35%">
+    <form class="d-md-inline-block form-inline ms-auto me-0 me-md-auto my-2 my-md-0"
+          action="${pageContext.request.contextPath}/search/byKeyword" method="GET" style="width: 35%">
         <div class="input-group">
             <input class="form-control" type="text" placeholder="Search movies or cast" id="keyword" name="keyword"
                    aria-label="Search for..." aria-describedby="btnNavbarSearch" />

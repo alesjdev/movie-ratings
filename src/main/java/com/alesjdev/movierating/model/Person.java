@@ -13,8 +13,6 @@ public class Person {
 
     private final String IMAGE_PATH_ORIGINAL = "https://image.tmdb.org/t/p/original";
     private final String IMAGE_PATH_W300 = "https://image.tmdb.org/t/p/w300";
-    private final String PICTURE_NOT_FOUND =
-            "assets/img/pic-not-available.png";
 
     @JsonProperty("id")
     private int id;
@@ -122,12 +120,12 @@ public class Person {
 
     public String getProfilePath() {
         return profilePath != null ?
-                IMAGE_PATH_ORIGINAL + profilePath : PICTURE_NOT_FOUND;
+                IMAGE_PATH_ORIGINAL + profilePath : null;
     }
 
     public String getProfileSmall() {
         return profilePath != null ?
-                IMAGE_PATH_W300 + profilePath : PICTURE_NOT_FOUND;
+                IMAGE_PATH_W300 + profilePath : null;
     }
 
     public String getCharacter() {

@@ -17,8 +17,6 @@ public class Movie {
 
     private final String IMAGE_PATH_ORIGINAL = "https://image.tmdb.org/t/p/original";
     private final String IMAGE_PATH_W300 = "https://image.tmdb.org/t/p/w300";
-    private final String PICTURE_NOT_FOUND =
-            "assets/img/pic-not-available.png";
 
     @JsonProperty("id")
     private int id;
@@ -161,7 +159,7 @@ public class Movie {
     }
 
     public String getPosterPath() {
-        return posterPath != null ? IMAGE_PATH_ORIGINAL + posterPath : PICTURE_NOT_FOUND;
+        return posterPath != null ? IMAGE_PATH_ORIGINAL + posterPath : null;
     }
 
     public void setPosterPath(String posterPath) {
@@ -169,7 +167,7 @@ public class Movie {
     }
 
     public String getPosterSmall() {
-        return posterPath != null ? IMAGE_PATH_W300 + posterPath : PICTURE_NOT_FOUND;
+        return posterPath != null ? IMAGE_PATH_W300 + posterPath : null;
     }
 
     public String getReleaseDate() {

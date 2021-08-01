@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/search")
 public class SearchController {
 
     @Autowired
@@ -18,7 +20,7 @@ public class SearchController {
     PersonService personService;
 
 
-    @GetMapping("/search")
+    @GetMapping("/byKeyword")
     public String searchFor(@RequestParam String keyword, Model theModel) {
         theModel.addAttribute("movies", movieService.findByKeyword(keyword));
         theModel.addAttribute("people", personService.findByKeyword(keyword));

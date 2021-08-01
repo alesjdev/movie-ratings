@@ -9,7 +9,7 @@
     <meta name="author" content="" />
     <title>${person.name}</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed" style="background-image: url('${person.profilePath}');
@@ -26,7 +26,14 @@ background-position: center;">
                 <div class="row" style="opacity:0.9">
                     <!-- Person image card -->
                     <div class="col-sm-3 col-3 card text-white bg-dark card-body" style="max-width: 300px">
-                        <img src="${person.profileSmall}" style="max-width: 100%; height: auto;" alt="${person.name}">
+                        <img
+                        <c:if test = "${not empty person.profileSmall}">
+                            src="${person.profileSmall}"
+                        </c:if>
+                        <c:if test = "${empty person.profileSmall}">
+                            src="${pageContext.request.contextPath}/assets/img/pic-not-available.png"
+                        </c:if>
+                        style="max-width: 100%; height: auto;" alt="${person.name}">
                     </div>
                     <!-- Details card -->
                     <div class="col-sm-9 col-9 card text-white bg-dark card-body">
@@ -66,10 +73,14 @@ background-position: center;">
                             <c:forEach var="movie" items="${person.movies}">
                                 <div class="card text-white bg-dark mb-4" style="max-width: 10rem; display:inline-block;">
                                     <div class="card-body">
-                                        <a href="movie?movieId=${movie.id}"><img src="${movie.posterSmall}" style="max-width: 100%; height: auto;" alt="${movie.title}"></a>
+                                        <a href="${pageContext.request.contextPath}/movie/byId?movieId=${movie.id}">
+                                            <img src="${movie.posterSmall}" style="max-width: 100%; height: auto;"
+                                                 alt="${movie.title}">
+                                        </a>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a href="movie?movieId=${movie.id}" class="small text-white stretched-link">
+                                        <a href="${pageContext.request.contextPath}/movie/byId?movieId=${movie.id}"
+                                           class="small text-white stretched-link">
                                             ${movie.title}<br>
                                             <c:if test = "${not empty movie.character}">
                                                 (<span style="color: cyan">${movie.character}</span>)
@@ -90,11 +101,11 @@ background-position: center;">
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+<script src="${pageContext.request.contextPath}/js/scripts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="assets/demo/chart-area-demo.js"></script>
-<script src="assets/demo/chart-bar-demo.js"></script>
+<script src="${pageContext.request.contextPath}/assets/demo/chart-area-demo.js"></script>
+<script src="${pageContext.request.contextPath}/assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-<script src="js/datatables-simple-demo.js"></script>
+<script src="${pageContext.request.contextPath}/js/datatables-simple-demo.js"></script>
 </body>
 </html>
