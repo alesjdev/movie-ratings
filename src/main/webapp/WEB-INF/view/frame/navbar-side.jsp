@@ -8,11 +8,11 @@
                     Popular
                 </a>
                 <a class="nav-link" href="${pageContext.request.contextPath}/movie/top">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Top Rated
                 </a>
                 <a class="nav-link" href="${pageContext.request.contextPath}/movie/upcoming">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="sb-nav-link-icon"><i class="far fa-clock"></i></div>
                     Upcoming
                 </a>
                 <div class="sb-sidenav-menu-heading">People</div>

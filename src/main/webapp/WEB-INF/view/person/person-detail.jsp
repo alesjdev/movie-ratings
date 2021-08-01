@@ -42,9 +42,15 @@ background-position: center;">
                             <b class="h1">${person.name} </b>
                             <c:if test = "${not empty person.originalName}">
                                 <span style="color: lightgray"> (${person.originalName})</span>
-                            </c:if><br><br>
-                            <i class="fas fa-map-marker-alt"></i> <i class="h5"> ${person.placeOfBirth}</i>
+                            </c:if>
+
+                            <c:if test = "${not empty person.placeOfBirth}">
+                                <br><br>
+                                <i class="fas fa-map-marker-alt"></i> <i class="h5"> ${person.placeOfBirth}</i>
+                                <br>
+                            </c:if>
                             <br><br><br>
+
                             <p>${person.biography}</p>
                             <br>
 
