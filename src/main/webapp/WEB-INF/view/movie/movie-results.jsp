@@ -43,7 +43,8 @@
                                         </c:if>
                                         <c:if test = "${empty movie.posterSmall}">
                                             src="${pageContext.request.contextPath}/assets/img/pic-not-available.png"
-                                        </c:if> style="max-width: 100%; height: auto;" style="max-width: 100%; height: auto;"
+                                        </c:if>
+                                        style="max-width: 100%; height: auto;" style="max-width: 100%; height: auto;"
                                         alt="${movie.title}">
                                     </a>
                                 </div>

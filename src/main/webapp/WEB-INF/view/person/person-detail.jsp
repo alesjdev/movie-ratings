@@ -80,7 +80,14 @@ background-position: center;">
                                 <div class="card text-white bg-dark mb-4" style="max-width: 10rem; display:inline-block;">
                                     <div class="card-body">
                                         <a href="${pageContext.request.contextPath}/movie/byId?movieId=${movie.id}">
-                                            <img src="${movie.posterSmall}" style="max-width: 100%; height: auto;"
+                                            <img
+                                            <c:if test = "${not empty movie.posterSmall}">
+                                                src="${movie.posterSmall}"
+                                            </c:if>
+                                            <c:if test = "${empty movie.posterSmall}">
+                                                src="${pageContext.request.contextPath}/assets/img/pic-not-available.png"
+                                            </c:if>
+                                            style="max-width: 100%; height: auto;"
                                                  alt="${movie.title}">
                                         </a>
                                     </div>
