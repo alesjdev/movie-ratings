@@ -1,9 +1,7 @@
 package com.alesjdev.movierating.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,53 +22,14 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "about")
-    private String about;
+    @Column(name = "about_me")
+    private String aboutMe;
 
     @Column(name = "enabled")
     private boolean enabled;
 
     @OneToMany(mappedBy = "user")
     private Set<Review> reviewList = new HashSet<>();
-
-
-    // Constructors
-    public User() {
-    }
-
-    public User(int id, String username, String password, String email) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
-
-    public User(int id, String username, String password, String email, boolean enabled) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.enabled = enabled;
-    }
-
-    public User(int id, String username, String password, String email, String about, boolean enabled) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.about = about;
-        this.enabled = enabled;
-    }
-
-    public User(int id, String username, String password, String email, String about, boolean enabled, Set<Review> reviewList) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.about = about;
-        this.enabled = enabled;
-        this.reviewList = reviewList;
-    }
 
 
     // Getters and Setters
@@ -106,12 +65,12 @@ public class User {
         this.email = email;
     }
 
-    public String getAbout() {
-        return about;
+    public String getAboutMe() {
+        return aboutMe;
     }
 
-    public void setAbout(String about) {
-        this.about = about;
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
     }
 
     public boolean isEnabled() {
