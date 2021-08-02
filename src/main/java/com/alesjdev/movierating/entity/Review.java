@@ -3,7 +3,7 @@ package com.alesjdev.movierating.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "review")
+@Table(name = "review", schema = "public")
 public class Review {
 
     @Id

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user", schema = "public")
 public class User {
 
     @Id
@@ -30,6 +30,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Review> reviewList = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> authorities;
 
 
     // Getters and Setters
@@ -87,6 +93,14 @@ public class User {
 
     public void setReviewList(Set<Review> reviewList) {
         this.reviewList = reviewList;
+    }
+
+    public Set<Role> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Role> authorities) {
+        this.authorities = authorities;
     }
 
     // Convenience methods to add / delete reviews from the user

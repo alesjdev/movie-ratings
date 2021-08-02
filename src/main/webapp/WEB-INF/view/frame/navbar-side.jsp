@@ -1,3 +1,4 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
@@ -79,9 +80,12 @@
                 </a>
             </div>
         </div>
+        <security:authorize access="isAuthenticated()">
         <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            Start Bootstrap
+            <div class="small">Logged in as:
+                    <security:authentication property="principal.username" />
+            </div>
         </div>
+        </security:authorize>
     </nav>
 </div>
