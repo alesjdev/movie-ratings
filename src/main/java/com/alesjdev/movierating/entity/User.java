@@ -1,6 +1,7 @@
 package com.alesjdev.movierating.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,12 +15,23 @@ public class User {
     private int id;
 
     @Column(name = "username")
+    // Validation(s)
+    @NotBlank(message = "Must specify an username")
+    @Size(min = 3, message = "Username must be at least 3 characters long")
+    @Size(max = 25, message = "Username must be 25 characters at max")
     private String username;
 
     @Column(name = "password")
+    // Validation(s)
+    @NotBlank(message = "Must specify a password")
+    @Size(min = 4, message = "Password must be at least 4 characters long")
+    @Size(max = 70, message = "Password must be 70 characters at max")
     private String password;
 
     @Column(name = "email")
+    // Validation(s)
+    @NotBlank(message = "Must specify a valid email address")
+    @Email(message = "That isn't a valid email address")
     private String email;
 
     @Column(name = "about_me")
