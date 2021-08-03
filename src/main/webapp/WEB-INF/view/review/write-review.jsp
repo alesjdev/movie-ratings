@@ -49,16 +49,19 @@
                                 <form:hidden path="movieId" />
 
                                 <!-- Rating -->
+                                <p><span class="input-group-addon"><i class="fas fa-edit"></i></span> Your score</p>
                                 <div style="margin-bottom: 25px" class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-signal"></i></span>
-                                    <form:errors path="score" cssClass="error" />
-                                    <form:input path="score" placeholder="score (1-10) (*)" class="form-control" />
+                                    <c:forEach begin="1" end="10" varStatus="loop">
+                                        <form:radiobutton class="form-check-input" path="score" value="${loop.index}" />
+                                        <label class="form-check-label" style="padding-right:2em">
+                                            &nbsp;${loop.index}
+                                        </label>
+                                    </c:forEach>
                                 </div>
 
                                 <!-- Opinion -->
+                                <p><span class="input-group-addon"><i class="fas fa-comment-alt"></i></span> Your review</p>
                                 <div style="margin-bottom: 25px" class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-                                    <form:errors path="opinion" cssClass="error" />
                                     <form:textarea path="opinion" placeholder="Write your opinion" class="form-control" />
                                 </div>
 
