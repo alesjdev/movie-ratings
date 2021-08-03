@@ -125,4 +125,16 @@ public class User {
         this.reviewList.remove(review);
         review.setUser(null);
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", enabled=" + enabled +
+                '}';
+    }
 }
