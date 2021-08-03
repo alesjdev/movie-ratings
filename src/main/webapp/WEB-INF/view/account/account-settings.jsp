@@ -12,6 +12,11 @@
     <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
+<style>
+    .separation {
+        margin-left: 25px;
+    }
+</style>
 <body class="sb-nav-fixed" style="background-image: url('${pageContext.request.contextPath}/assets/img/theatre.jpg');
               background-size: cover;
               background-attachment: fixed;
@@ -23,21 +28,38 @@
         <main>
             <div class="container-fluid px-4">
                 <br>
-                <!-- Movies by keyword -->
-                <div class="card text-white bg-dark mb-4" style="width: 100%">
-                    <div class="card-body text-center">
+
+                <!-- Account details -->
+                <div class="card bg-dark mb-4 text-white col-lg-6">
+                    <div class="card-header">
+                        <i class="fas fa-address-card"></i>
                         Account details
                     </div>
+                    <div class="card-body text-white">
+                        <table class="text-white table table-sm">
+                            <tr>
+                                <th>Username</th>
+                                <td class="separation">${user.username}</td>
+                            </tr>
+                            <tr>
+                                <th>Password</th>
+                                <td class="separation">********</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td class="separation">${user.email}</td>
+                            </tr>
+                            <tr>
+                                <th>About</th>
+                                <td class="separation">${user.aboutMe}</td>
+                            </tr>
+                            <tr>
+                                <th>Active account</th>
+                                <td class="separation">${user.enabled}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <br>
-                <div class="row text-white">
-                    <p>Username: ${user.username}</p>
-                    <p>Password: Change password ></p>
-                    <p>Email: ${user.email}</p>
-                    <p>About: ${user.aboutMe}</p>
-                    <p>Active account: ${user.enabled}</p>
-                </div>
-                <!-- End of account details -->
                 <br><hr><br>
             </div>
         </main>

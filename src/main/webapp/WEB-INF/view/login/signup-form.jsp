@@ -84,6 +84,13 @@
 							<form:input path="username" placeholder="username (*)" class="form-control" />
 						</div>
 
+						<!-- User name -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+							<form:errors path="aboutMe" cssClass="error" />
+							<form:input path="aboutMe" placeholder="Short description about you" class="form-control" />
+						</div>
+
 
 						<!-- Register Button -->
 						<div style="margin-top: 10px" class="form-group">						
