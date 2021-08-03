@@ -1,13 +1,10 @@
 package com.alesjdev.movierating.entity;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "role", schema = "public")
-public class Role implements GrantedAuthority {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,16 +14,6 @@ public class Role implements GrantedAuthority {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
-    @JoinTable(name = "users_roles",
-        joinColumns = @JoinColumn(name = "role_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> users;
-
-    @Override
-    public String getAuthority() {
-        return name;
-    }
 
     public int getId() {
         return id;
@@ -42,13 +29,5 @@ public class Role implements GrantedAuthority {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 }
