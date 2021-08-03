@@ -31,32 +31,6 @@ public class Review {
     private long datePosted;
 
 
-    // Constructors
-    public Review() {
-    }
-
-    public Review(User user, int movieId, int score) {
-        this.user = user;
-        this.movieId = movieId;
-        this.score = score;
-    }
-
-    public Review(User user, int movieId, int score, String opinion) {
-        this.user = user;
-        this.movieId = movieId;
-        this.score = score;
-        this.opinion = opinion;
-    }
-
-    public Review(int id, User user, int movieId, int score, String opinion) {
-        this.id = id;
-        this.user = user;
-        this.movieId = movieId;
-        this.score = score;
-        this.opinion = opinion;
-    }
-
-
     // Getters and Setters
     public int getId() {
         return id;

@@ -33,6 +33,17 @@
                         <c:if test = "${empty movie.posterSmall}">
                             src="${pageContext.request.contextPath}/assets/img/pic-not-available.png"
                         </c:if> style="max-width: 100%; height: auto;" style="max-width: 100%; height: auto;" alt="${movie.title}">
+                        <br>
+                        <!-- Rate movie button -->
+                        <a class="btn btn-danger"
+                           href="${pageContext.request.contextPath}/addReview?movieId=${movie.id}" >
+                            Add review
+                        </a>
+                        <br>
+                        <a class="btn btn-success"
+                           href="#Reviews" >
+                            See reviews
+                        </a>
                     </div>
                     <!-- Details card -->
                     <div class="col-sm-9 col-9 card text-white bg-dark card-body">
@@ -87,7 +98,14 @@
                     <!-- End of movie tags -->
                 </div>
                 <hr>
+                <!-- User reviews about the movie -->
+                <div class="row" style="opacity:0.9" id="Reviews">
+                    <!-- Movie image card -->
+                    <div class="card text-white bg-dark card-body">
+                        User reviews
+                    </div>
 
+                </div>
             </div>
         </main>
         <jsp:include page="../frame/footer.jsp" />
