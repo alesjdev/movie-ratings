@@ -40,7 +40,7 @@ public class User {
     @Column(name = "enabled")
     private boolean enabled;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Review> reviewList = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER,
