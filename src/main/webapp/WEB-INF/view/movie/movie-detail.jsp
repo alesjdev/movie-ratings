@@ -102,11 +102,13 @@
                 <div class="row" style="opacity:0.9" id="Reviews">
                     <!-- Movie image card -->
                     <div class="card text-white bg-dark card-body">
-                        User reviews
+                        User reviews <br>
+                        <c:forEach var="review" items="${movie.reviews}">
+                            ${review}
+                            ${review.dateTime}
+                        </c:forEach>
                     </div>
-                    <c:forEach var="review" items="${movie.reviews}">
-                        ${review}
-                    </c:forEach>
+
                 </div>
             </div>
         </main>
