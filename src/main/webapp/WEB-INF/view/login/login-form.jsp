@@ -102,7 +102,7 @@
 			</div>
 
 			<div>
-				<a href="${pageContext.request.contextPath}/register" class="btn btn-primary" role="button" aria-pressed="true">Register New User</a>
+				<a href="${pageContext.request.contextPath}/register/show" class="btn btn-primary" role="button" aria-pressed="true">Register New User</a>
 			</div>
 
 		</div>

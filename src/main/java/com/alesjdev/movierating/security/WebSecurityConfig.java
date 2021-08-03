@@ -48,8 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 //                .antMatchers("/").authenticated()
+                .antMatchers("/register/**").permitAll()
                 .antMatchers("/").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/person/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()
@@ -65,20 +65,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .exceptionHandling()
                         .accessDeniedPage("/accessDenied");
 
-//        http.authorizeRequests()
-//                .antMatchers("/").hasRole("USER")
-//                .antMatchers("/leaders/**").hasRole("MANAGER")
-//                .antMatchers("/systems/**").hasRole("ADMIN")
-//                .and()
-//                .formLogin()
-//                .loginPage("/showMyLoginPage")
-//                .loginProcessingUrl("/authenticateUser")
-//                .successHandler(customAuthenticationSuccessHandler)
-//                .permitAll()
-//                .and()
-//                .logout().permitAll()
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/access-denied");
     }
 
 

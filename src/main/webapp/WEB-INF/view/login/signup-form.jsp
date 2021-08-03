@@ -41,7 +41,7 @@
 				<div style="padding-top: 30px" class="panel-body">
 
 					<!-- Registration Form -->
-					<form:form action="${pageContext.request.contextPath}/processRegistration"
+					<form:form action="${pageContext.request.contextPath}/register/process"
 						  	   modelAttribute="user"
 						  	   class="form-horizontal">
 
@@ -62,9 +62,6 @@
 					            </div>
 					        </div>
 					    </div>
-
-						<!-- User enabled by default -->
-						<form:hidden path = "enabled" value = "true" />
 
 						<!-- Email -->
 						<div style="margin-bottom: 25px" class="input-group">
