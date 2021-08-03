@@ -85,4 +85,16 @@ public class Review {
         LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(this.datePosted), ZoneId.systemDefault());
         return ldt.toString();
     }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", user=" + user +
+                ", movieId=" + movieId +
+                ", score=" + score +
+                ", opinion='" + opinion + '\'' +
+                ", datePosted=" + datePosted +
+                '}';
+    }
 }

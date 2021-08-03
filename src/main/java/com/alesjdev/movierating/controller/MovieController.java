@@ -1,6 +1,9 @@
 package com.alesjdev.movierating.controller;
 
+import com.alesjdev.movierating.entity.Review;
+import com.alesjdev.movierating.model.Movie;
 import com.alesjdev.movierating.service.MovieService;
+import com.alesjdev.movierating.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,12 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Set;
+
 @Controller()
 @RequestMapping("/movie")
 public class MovieController {
 
     @Autowired
     MovieService theMovieService;
+
+    @Autowired
+    ReviewService theReviewService;
+
 
     @GetMapping("/popular")  // Popular movies
     public String getPopular(Model theModel){
@@ -45,7 +54,16 @@ public class MovieController {
 
     @GetMapping("/byId")  // Get movie by Id and display all details
     public String movieDetails(@RequestParam int movieId, Model theModel){
-        theModel.addAttribute("movie", theMovieService.findById(movieId));
+        // Retrieve movie details from the API
+        Movie theMovie = theMovieService.findById(movieId);
+
+        // Find all reviews that belong to that movie and add them to the corresponding field
+        Set<Review> movieReviews = theReviewService.findReviewsByMovieId(movieId);
+        theMovie.setReviews(movieReviews);
+
+        // Add attribute Movie with reviews already in it
+        theModel.addAttribute("movie", theMovie);
+
         return "movie/movie-detail";
     }
 

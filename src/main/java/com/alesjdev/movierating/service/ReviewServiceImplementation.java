@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Set;
 
 @Service
 public class ReviewServiceImplementation implements ReviewService{
@@ -43,5 +44,10 @@ public class ReviewServiceImplementation implements ReviewService{
             theReview.setDatePosted(System.currentTimeMillis());
         }
         reviewRepository.save(theReview);
+    }
+
+    @Override
+    public Set<Review> findReviewsByMovieId(int movieId) {
+        return reviewRepository.findByMovieId(movieId);
     }
 }

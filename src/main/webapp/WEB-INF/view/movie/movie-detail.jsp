@@ -104,7 +104,9 @@
                     <div class="card text-white bg-dark card-body">
                         User reviews
                     </div>
-
+                    <c:forEach var="review" items="${movie.reviews}">
+                        ${review}
+                    </c:forEach>
                 </div>
             </div>
         </main>
