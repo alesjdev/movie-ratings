@@ -30,8 +30,12 @@
                     </div>
                 </div>
                 <br>
-                <div class="row">
-                    ${user}
+                <div class="row text-white">
+                    <p>Username: ${user.username}</p>
+                    <p>Password: Change password ></p>
+                    <p>Email: ${user.email}</p>
+                    <p>About: ${user.aboutMe}</p>
+                    <p>Active account: ${user.enabled}</p>
                 </div>
                 <!-- End of account details -->
                 <br><hr><br>
