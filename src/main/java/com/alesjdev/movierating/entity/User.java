@@ -31,7 +31,7 @@ public class User {
     @Column(name = "email")
     // Validation(s)
     @NotBlank(message = "Must specify a valid email address")
-    @Email(message = "That isn't a valid email address")
+    @Email(message = "That is not a valid email address")
     private String email;
 
     @Column(name = "about_me")

@@ -65,7 +65,7 @@
 
 						<!-- Email -->
 						<div style="margin-bottom: 25px" class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 							<form:errors path="email" cssClass="error" />
 							<form:input path="email" placeholder="email (*)" class="form-control" />
 						</div>
