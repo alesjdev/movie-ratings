@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}/movie/popular">The Movie Reviews</a>
@@ -22,7 +23,13 @@
                 <li><a class="dropdown-item" href="#!">Settings</a></li>
                 <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="performLogout">Logout</a></li>
+
+                <form:form action="${pageContext.request.contextPath}/logout" method="POST">
+                    <li>
+                        <input type="submit" class="dropdown-item" value="Logout" />
+                    </li>
+                </form:form>
+
             </ul>
         </li>
     </ul>
