@@ -53,24 +53,39 @@
                                 <div style="margin-bottom: 25px" class="input-group">
                                     <c:forEach begin="1" end="10" varStatus="loop">
                                         <form:radiobutton class="form-check-input" path="score" value="${loop.index}" />
-                                        <label class="form-check-label" style="padding-right:2em">
+                                        <label class="form-check-label" style="padding-right:1em">
                                             &nbsp;${loop.index}
                                         </label>
                                     </c:forEach>
                                 </div>
-
+                                <hr>
                                 <!-- Opinion -->
                                 <p><span class="input-group-addon"><i class="fas fa-comment-alt"></i></span> Your review</p>
                                 <div style="margin-bottom: 25px" class="input-group">
                                     <form:textarea path="opinion" placeholder="Write your opinion" class="form-control" />
                                 </div>
+                                <hr>
 
-                                <!-- Register review button -->
-                                <div style="margin-top: 10px" class="form-group">
+                                <div class="form-group">
+                                    <!-- Register review button -->
                                     <div class="col-sm-6 controls">
                                         <button type="submit" class="btn btn-primary">Save review</button>
                                     </div>
+                                    <br>
+                                    <!-- Delete button if updating existing review (review already had a score) -->
+                                    <c:if test = "${review.score > 0}">
+                                        <div class="col-sm-6 controls">
+                                            <form:form action="${pageContext.request.contextPath}/deleteReview"
+                                                       modelAttribute="review" class="form-vertical" method="DELETE">
+                                                <form:hidden path="id" />
+                                                <form:hidden path="user" />
+                                                <button type="submit" class="btn btn-danger">Delete review</button>
+                                            </form:form>
+                                        </div>
+                                    </c:if>
+
                                 </div>
+
                             </form:form>
                         </div>
                     </div>
