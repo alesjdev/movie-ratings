@@ -113,7 +113,7 @@
                                 <c:forEach begin="1" end="${review.score}">
                                     <i class="fas fa-star text-warning"></i>
                                 </c:forEach>
-                                <c:forEach begin="${review.score}" end="10">
+                                <c:forEach begin="${review.score}" end="9">
                                     <i class="far fa-star text-warning"></i>
                                 </c:forEach>
                                 </span><br>
