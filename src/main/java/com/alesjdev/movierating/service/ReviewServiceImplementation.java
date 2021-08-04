@@ -9,7 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.Set;
 
 @Service
@@ -54,5 +53,10 @@ public class ReviewServiceImplementation implements ReviewService{
         movieReviews.forEach(review -> review.getUser().setPassword(null));
         // Return reviews
         return movieReviews;
+    }
+
+    @Override
+    public void delete(Review theReview) {
+        reviewRepository.delete(theReview);
     }
 }

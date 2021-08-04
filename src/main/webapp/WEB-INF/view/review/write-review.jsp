@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <b class="h1">${movie.title} </b><br><br>
                             <form:form action="${pageContext.request.contextPath}/processReview"
-                                       modelAttribute="review" class="form-vertical">
+                                       method="POST" modelAttribute="review" class="form-vertical">
 
                                 <!-- Id, user, movieId -->
                                 <form:hidden path="id" />
@@ -72,21 +72,21 @@
                                         <button type="submit" class="btn btn-primary">Save review</button>
                                     </div>
                                     <br>
-                                    <!-- Delete button if updating existing review (review already had a score) -->
-                                    <c:if test = "${review.score > 0}">
-                                        <div class="col-sm-6 controls">
-                                            <form:form action="${pageContext.request.contextPath}/deleteReview"
-                                                       modelAttribute="review" class="form-vertical" method="DELETE">
-                                                <form:hidden path="id" />
-                                                <form:hidden path="user" />
-                                                <button type="submit" class="btn btn-danger">Delete review</button>
-                                            </form:form>
-                                        </div>
-                                    </c:if>
-
                                 </div>
-
                             </form:form>
+
+                            <!-- Delete button if updating existing review (review already had a score) -->
+                            <c:if test = "${review.score > 0}">
+                                <div class="col-sm-6 controls form-group">
+                                    <form:form action="${pageContext.request.contextPath}/deleteReview"
+                                               modelAttribute="review" class="form-vertical" method="POST">
+                                        <form:hidden path="id" />
+                                        <form:hidden path="user" />
+                                        <form:hidden path="movieId" />
+                                        <button type="submit" class="btn btn-danger">Delete review</button>
+                                    </form:form>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                     <!-- End of movie tag -->
