@@ -49,7 +49,7 @@ public class ReviewServiceImplementation implements ReviewService{
     @Override
     public Set<Review> findReviewsByMovieId(int movieId) {
         // Find all reviews that belong to a movie
-        Set<Review> movieReviews = reviewRepository.findByMovieId(movieId);
+        Set<Review> movieReviews = reviewRepository.findByMovieIdOrderByDatePostedDesc(movieId);
         // Delete passwords from 'user' fields, to avoid security issues
         movieReviews.forEach(review -> review.getUser().setPassword(null));
         // Return reviews

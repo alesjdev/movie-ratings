@@ -80,21 +80,13 @@ public class Review {
         this.datePosted = datePosted;
     }
 
+
     // Convenience method to get the date and time based on the millis
     public String getDateTime(){
         LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(this.datePosted), ZoneId.systemDefault());
-        return ldt.toString();
+        String dateOnly = ldt.toString().substring(0, 10);
+        String timeOnly = ldt.toString().substring(11, ldt.toString().length()-4);
+        return dateOnly + " at " + timeOnly;
     }
 
-    @Override
-    public String toString() {
-        return "Review{" +
-                "id=" + id +
-                ", user=" + user +
-                ", movieId=" + movieId +
-                ", score=" + score +
-                ", opinion='" + opinion + '\'' +
-                ", datePosted=" + datePosted +
-                '}';
-    }
 }

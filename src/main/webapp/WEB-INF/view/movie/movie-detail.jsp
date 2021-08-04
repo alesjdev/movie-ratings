@@ -98,14 +98,43 @@
                     <!-- End of movie tags -->
                 </div>
                 <hr>
+
                 <!-- User reviews about the movie -->
                 <div class="row" style="opacity:0.9" id="Reviews">
-                    <!-- Movie image card -->
-                    <div class="card text-white bg-dark card-body">
-                        User reviews <br>
+                    <div class="card text-white bg-dark">
+                        <br>
+                        <h5 style="margin-left: 10px"> User reviews</h5>
+                        <hr>
+                        <!-- Review cards -->
                         <c:forEach var="review" items="${movie.reviews}">
-                            ${review}
-                            ${review.dateTime}
+                            <div class="card text-white bg-secondary card-body">
+                                <!-- Score -->
+                                <span>
+                                <c:forEach begin="1" end="${review.score}">
+                                    <i class="fas fa-star text-warning"></i>
+                                </c:forEach>
+                                <c:forEach begin="${review.score}" end="10">
+                                    <i class="far fa-star text-warning"></i>
+                                </c:forEach>
+                                </span><br>
+                                <!-- Short opinion -->
+
+                                <!-- Detailed opinion -->
+                                <p class="h6">
+                                    <i>"${review.opinion}"</i><br>
+                                </p>
+
+                                <!-- User details -->
+                                <small>
+                                    <hr>
+                                    Posted by
+                                    <a class="text-info" href="${pageContext.request.contextPath}/user/byId?userId=${review.user.id}">
+                                        <b>${review.user.username}</b></a>
+                                    <!-- Date posted details -->
+                                    on ${review.dateTime}
+                                </small>
+                            </div>
+                            <br>
                         </c:forEach>
                     </div>
 
