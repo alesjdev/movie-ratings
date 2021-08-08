@@ -26,55 +26,57 @@
 
                 <!-- Latest user reviews -->
                 <div class="row" style="opacity:0.9">
-                    <div class="card text-white bg-dark">
-                        <br>
-                        <h5 style="margin-left: 10px"> Latest user reviews</h5>
-                        <hr>
-                        <!-- Review cards -->
-                        <c:forEach var="review" items="${reviews}">
-                            <div class="row">
-                                <!-- Movie image -->
-                                <div class="col-sm-3 col-3 card text-white bg-dark card-body" style="max-width: 150px">
+                    <div class="card text-white bg-dark mb-4" style="width: 100%">
+                        <div class="card-body">
+                            <b>Latest user reviews</b>
+                        </div>
+                    </div>
+
+                    <!-- Review cards -->
+                    <c:forEach var="review" items="${reviews}">
+                        <div class="row mb-4">
+                            <!-- Movie image -->
+                            <div class="col-sm-3 col-3 card text-white bg-dark card-body" style="max-width: 180px">
+                                <a href="${pageContext.request.contextPath}/movie/byId?movieId=${review.movie.id}">
                                     <img
                                     <c:if test = "${not empty review.movie.posterSmall}">
                                         src="${review.movie.posterSmall}"
                                     </c:if>
                                     <c:if test = "${empty review.movie.posterSmall}">
                                         src="${pageContext.request.contextPath}/assets/img/pic-not-available.png"
-                                    </c:if> style="max-width: 100%; height: auto;" style="max-width: 100%; height: auto;" alt="${movie.title}">
-                                </div>
-                                <!-- Review details -->
-                                <div class="col-sm-9 col-9 card text-white bg-dark card-body">
-                                    <!-- Score -->
-                                    <span>
-                                    <c:forEach begin="1" end="${review.score}">
-                                        <i class="fas fa-star text-warning"></i>
-                                    </c:forEach>
-                                    <c:forEach begin="${review.score}" end="9">
-                                        <i class="far fa-star text-warning"></i>
-                                    </c:forEach>
-                                    </span><br>
-
-                                    <!-- Detailed opinion -->
-                                    <p class="h6">
-                                        <i>"${review.opinion}"</i><br>
-                                    </p>
-
-                                    <!-- User details -->
-                                    <small>
-                                        <hr>
-                                        Posted by
-                                        <a class="text-info" href="${pageContext.request.contextPath}/user/byId?userId=${review.user.id}">
-                                            <b>${review.user.username}</b></a>
-                                        <!-- Date posted details -->
-                                        on ${review.dateTime}
-                                    </small>
-                                </div>
+                                    </c:if> style="width: 100%; height: auto;" alt="${movie.title}">
+                                </a>
                             </div>
-                            <br>
-                        </c:forEach>
-                    </div>
+                            <!-- Review details -->
+                            <div class="col-sm-9 col-9 card text-white bg-dark card-body">
+                                <!-- Score -->
+                                <span>
+                                <c:forEach begin="1" end="${review.score}">
+                                    <i class="fas fa-star text-warning"></i>
+                                </c:forEach>
+                                <c:forEach begin="${review.score}" end="9">
+                                    <i class="far fa-star text-warning"></i>
+                                </c:forEach>
+                                </span><br>
 
+                                <!-- Detailed opinion -->
+                                <p class="h6">
+                                    <i>"${review.opinion}"</i><br>
+                                </p>
+
+                                <!-- User details -->
+                                <small>
+                                    <hr>
+                                    Posted by
+                                    <a class="text-info" href="${pageContext.request.contextPath}/user/byId?userId=${review.user.id}">
+                                        <b>${review.user.username}</b></a>
+                                    <!-- Date posted details -->
+                                    on ${review.dateTime}
+                                </small>
+                            </div>
+                        </div>
+                        <br>
+                    </c:forEach>
                 </div>
             </div>
         </main>
