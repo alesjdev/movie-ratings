@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @Controller
 public class ReviewController {
 
@@ -40,5 +42,12 @@ public class ReviewController {
     public String deleteReview(@ModelAttribute("review") Review theReview) {
         reviewService.delete(theReview);
         return "redirect:/movie/byId?movieId=" + theReview.getMovieId();
+    }
+
+    @GetMapping("/latestReviews")
+    public String latestReviews(Model theModel) {
+        Set<Review> latestReviews = reviewService.getLatest();
+        theModel.addAttribute("reviews", latestReviews);
+        return "review/review-list";
     }
 }

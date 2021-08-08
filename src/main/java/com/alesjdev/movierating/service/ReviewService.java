@@ -10,4 +10,5 @@ public interface ReviewService {
     public void save(Review theReview);
     public Set<Review> findReviewsByMovieId(int movieId);
     public void delete(Review theReview);
+    public Set<Review> getLatest();
 }

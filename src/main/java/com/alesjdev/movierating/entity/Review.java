@@ -1,5 +1,7 @@
 package com.alesjdev.movierating.entity;
 
+import com.alesjdev.movierating.model.Movie;
+
 import javax.persistence.*;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -29,6 +31,9 @@ public class Review {
 
     @Column(name = "date_posted")
     private long datePosted;
+
+    @Transient
+    private Movie movie;
 
 
     // Getters and Setters
@@ -80,6 +85,13 @@ public class Review {
         this.datePosted = datePosted;
     }
 
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
 
     // Convenience method to get the date and time based on the millis
     public String getDateTime(){

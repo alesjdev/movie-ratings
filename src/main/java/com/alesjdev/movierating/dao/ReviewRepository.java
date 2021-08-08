@@ -14,4 +14,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     // Find all reviews of a movie, sorted by date posted from newest to oldest
     public Set<Review> findByMovieIdOrderByDatePostedDesc(int movieId);
+
+    // Find the latest reviews added for any movie, limited to 20 latest additions
+    public Set<Review> findTop20ByOrderByDatePostedDesc();
 }

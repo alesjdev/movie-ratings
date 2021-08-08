@@ -3,6 +3,7 @@ package com.alesjdev.movierating.service;
 import com.alesjdev.movierating.dao.ReviewRepository;
 import com.alesjdev.movierating.entity.Review;
 import com.alesjdev.movierating.entity.User;
+import com.alesjdev.movierating.model.Movie;
 import com.alesjdev.movierating.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +18,8 @@ public class ReviewServiceImplementation implements ReviewService{
     @Autowired
     ReviewRepository reviewRepository;
 
+    @Autowired
+    MovieService movieService;
 
     @Override
     public Review getUserReview(int movieId) {
@@ -50,7 +53,7 @@ public class ReviewServiceImplementation implements ReviewService{
         // Find all reviews that belong to a movie
         Set<Review> movieReviews = reviewRepository.findByMovieIdOrderByDatePostedDesc(movieId);
         // Delete passwords from 'user' fields, to avoid security issues
-        movieReviews.forEach(review -> review.getUser().setPassword(null));
+        removePasswordsFromUsers(movieReviews);
         // Return reviews
         return movieReviews;
     }
@@ -58,5 +61,25 @@ public class ReviewServiceImplementation implements ReviewService{
     @Override
     public void delete(Review theReview) {
         reviewRepository.delete(theReview);
+    }
+
+    @Override
+    public Set<Review> getLatest() {
+        // Find the latest user reviews for any movie
+        Set<Review> userReviews = reviewRepository.findTop20ByOrderByDatePostedDesc();
+        // Remove passwords from users
+        removePasswordsFromUsers(userReviews);
+        // Add full movie object to each review
+        addMovieToReviews(userReviews);
+        // Return reviews
+        return userReviews;
+    }
+
+    private void removePasswordsFromUsers(Set<Review> movieReviews){
+        movieReviews.forEach(review -> review.getUser().setPassword(null));
+    }
+
+    private void addMovieToReviews(Set<Review> reviews){
+        reviews.forEach(review -> review.setMovie(movieService.findById(review.getMovieId())));
     }
 }
