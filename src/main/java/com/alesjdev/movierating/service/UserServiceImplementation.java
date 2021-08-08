@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -20,6 +19,9 @@ public class UserServiceImplementation implements UserService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private MovieService movieService;
 
 
     // Save new user, assign enabled, set USER role
@@ -53,5 +55,21 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findById(int id) {
+        Optional<User> optional = userRepository.findById(id);
+        User user = null;
+        if (optional.isPresent()){
+            user = optional.get();
+            // Take password out to prevent security issues
+            user.setPassword(null);
+            // Add movie detail to the reviews
+            user.getReviewList().forEach(review -> review.setMovie(movieService.findById(review.getMovieId())));
+            // Sort reviews in descending order by date posted
+            user.setReviewList(user.getReviewList().stream().sorted().collect(Collectors.toCollection(LinkedHashSet::new)));
+        }
+        return user;
     }
 }

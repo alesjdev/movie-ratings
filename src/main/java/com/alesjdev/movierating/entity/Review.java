@@ -9,7 +9,7 @@ import java.time.ZoneId;
 
 @Entity
 @Table(name = "review", schema = "public")
-public class Review {
+public class Review implements Comparable<Review>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,4 +101,9 @@ public class Review {
         return dateOnly + " at " + timeOnly;
     }
 
+
+    @Override
+    public int compareTo(Review anotherReview) {
+        return Long.compare(anotherReview.datePosted, this.datePosted);
+    }
 }
