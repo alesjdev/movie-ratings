@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:form="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -30,35 +32,62 @@
                 <br>
 
                 <!-- Account details -->
-                <div class="card bg-dark mb-4 text-white col-lg-6">
+                <div class="card bg-dark mb-4 text-white">
                     <div class="card-header">
                         <i class="fas fa-address-card"></i>
                         Account details
                     </div>
-                    <div class="card-body text-white">
-                        <table class="text-white table table-sm">
-                            <tr>
-                                <th>Username</th>
-                                <td class="separation">${user.username}</td>
-                            </tr>
-                            <tr>
-                                <th>Password</th>
-                                <td class="separation">********</td>
-                            </tr>
-                            <tr>
-                                <th>Email</th>
-                                <td class="separation">${user.email}</td>
-                            </tr>
-                            <tr>
-                                <th>About</th>
-                                <td class="separation">${user.aboutMe}</td>
-                            </tr>
-                            <tr>
-                                <th>Active account</th>
-                                <td class="separation">${user.enabled}</td>
-                            </tr>
-                        </table>
+
+                    <!-- Username -->
+                    <div class="card bg-dark mb-4 text-white">
+                        <div class="card-header">
+                            Username:
+                        </div>
+                        <div class="card-body text-warning">
+                            <b>${user.username}</b>
+                        </div>
                     </div>
+
+                    <!-- Password -->
+                    <div class="card bg-dark mb-4 text-white">
+                        <div class="card-header">
+                            Password:
+                        </div>
+                        <div class="card-body text-warning">
+                            <!-- TODO: Link to 'change password' form -->
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="card bg-dark mb-4 text-white">
+                        <div class="card-header">
+                            Email:
+                        </div>
+                        <div class="card-body text-warning">
+                            <b>${user.email}</b>
+                        </div>
+                    </div>
+
+                    <!-- About -->
+                    <div class="card bg-dark mb-4 text-white">
+                        <div class="card-header">
+                            Bio:
+                        </div>
+                        <div class="card-body text-warning">
+                            <form:form action="${pageContext.request.contextPath}/account/changeBio" method="POST" modelAttribute="user">
+                                <form:hidden path="id" />
+                                <form:hidden path="password" />
+                                <form:hidden path="username" />
+                                <form:hidden path="email" />
+                                <form:hidden path="enabled" />
+                                <form:textarea path="aboutMe" rows="5" cols="70" class="bg-dark text-warning" />
+                                <br>
+                                <input type="submit" value="Change (Max 500 characters)" class="btn btn-warning" />
+                            </form:form>
+
+                        </div>
+                    </div>
+
                 </div>
                 <br><hr><br>
             </div>
