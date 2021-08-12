@@ -70,4 +70,20 @@ public class AccountServiceImplementation implements AccountService {
         // Return if new passwords match
         return passwordValidation.getNewPassword1().equals(passwordValidation.getNewPassword2());
     }
+
+    @Override
+    public void updatePassword(String rawPassword) {
+        // Get currently logged user
+        User user = getUserFromPrincipal();
+
+        // Encode received password
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedNewPassword = passwordEncoder.encode(rawPassword);
+
+        // Set current user's new password
+        user.setPassword(encodedNewPassword);
+
+        // Update user in database
+        userRepository.save(user);
+    }
 }

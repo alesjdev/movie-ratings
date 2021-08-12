@@ -72,7 +72,8 @@ public class AccountController {
         }
 
         /* If everything is correct */
-        // Make changes in DB
+        // Update user's password in the database
+        accountService.updatePassword(passwordValidation.getNewPassword1());
 
         // Logout user
         SecurityContextHolder.getContext().setAuthentication(null);

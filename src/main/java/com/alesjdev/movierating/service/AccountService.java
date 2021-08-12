@@ -9,4 +9,5 @@ public interface AccountService {
     public User findById(int userId);
     public boolean isCorrectPassword(PasswordValidation passwordValidation);
     public boolean newPasswordsMatch(PasswordValidation passwordValidation);
+    public void updatePassword(String rawPassword);
 }
