@@ -53,8 +53,10 @@
                         <div class="card-header">
                             Password:
                         </div>
+                        <!-- Change password button-->
                         <div class="card-body text-warning">
-                            <!-- TODO: Link to 'change password' form -->
+                            <a class="btn btn-warning"
+                               href="${pageContext.request.contextPath}/account/changePasswordForm">Modify password</a>
                         </div>
                     </div>
 
@@ -74,9 +76,11 @@
                             Bio:
                         </div>
                         <div class="card-body text-warning">
-                            <form:form action="${pageContext.request.contextPath}/account/changeBio" method="POST" modelAttribute="user">
+                            <form:form action="${pageContext.request.contextPath}/account/changeBio"
+                                       method="POST" modelAttribute="user">
                                 <form:hidden path="id" />
-                                <form:textarea path="aboutMe" rows="5" cols="70" class="bg-dark text-warning" />
+                                <form:textarea path="aboutMe" rows="7" class="bg-secondary text-warning"
+                                               style="width: 100%; font-weight: bold;" />
                                 <br>
                                 <input type="submit" value="Change (Max 500 characters)" class="btn btn-warning" />
                             </form:form>
@@ -100,3 +104,39 @@
 <script src="${pageContext.request.contextPath}/js/datatables-simple-demo.js"></script>
 </body>
 </html>
+
+<script>
+function showDiv() {
+   document.getElementById('change-pass').style.display = "block";
+}
+
+function checkPassword(form) {
+    oldPass = form.oldPassword.value;
+    newPass1 = form.newPassword1.value;
+    newPass2 = form.newPassword2.value;
+
+    // If old password not entered
+    if (oldPass == '')
+        alert ("Please enter current password.");
+
+    // If new password not entered
+    else if (newPass1 == '')
+        alert ("Please enter new password.");
+
+    // If confirmation of new password not entered
+    else if (newPass2 == '')
+        alert ("Please enter confirmation of new password.");
+
+    // If Not same return False.
+    else if (newPass1 != newPass2) {
+        alert ("\nPasswords don't match: Please try again.")
+        return false;
+    }
+
+    // If same return True.
+    else{
+        alert("Password change in progress. Please log-in again.")
+        return true;
+    }
+}
+</script>
