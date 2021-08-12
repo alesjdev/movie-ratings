@@ -52,8 +52,20 @@ public class AccountServiceImplementation implements AccountService {
         return user;
     }
 
+
+
     @Override
-    public boolean isCorrectPassword(PasswordValidation passwordValidation) {
+    public String verifyPassword(PasswordValidation passwordValidation) {
+        if (!isCorrectPassword(passwordValidation)){
+            return "Error: Current password is incorrect.";
+        }
+        if (!newPasswordsMatch(passwordValidation)){
+            return "Error: New passwords don't match";
+        }
+        return null;
+    }
+
+    private boolean isCorrectPassword(PasswordValidation passwordValidation) {
         // Get currently logged user's password
         String currentEncodedPassword = this.getUserFromPrincipal().getPassword();
 
@@ -65,8 +77,7 @@ public class AccountServiceImplementation implements AccountService {
         return passwordEncoder.matches(rawPassword, currentEncodedPassword);
     }
 
-    @Override
-    public boolean newPasswordsMatch(PasswordValidation passwordValidation) {
+    private boolean newPasswordsMatch(PasswordValidation passwordValidation) {
         // Return if new passwords match
         return passwordValidation.getNewPassword1().equals(passwordValidation.getNewPassword2());
     }

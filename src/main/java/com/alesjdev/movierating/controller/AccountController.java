@@ -59,15 +59,10 @@ public class AccountController {
             return "account/change-password";
         }
 
-        // Validate that old password matches with current logged password
-        if (!accountService.isCorrectPassword(passwordValidation)){
-            theModel.addAttribute("registrationError", "Error: Current password is incorrect.");
-            return "account/change-password";
-        }
-
-        // Validate that new password and the confirmation match with each other
-        if (!accountService.newPasswordsMatch(passwordValidation)){
-            theModel.addAttribute("registrationError", "Error: New passwords don't match");
+        // Validate current password and new one matching with the confirmation
+        String errors = accountService.verifyPassword(passwordValidation);
+        if (errors != null){
+            theModel.addAttribute("registrationError", errors);
             return "account/change-password";
         }
 
