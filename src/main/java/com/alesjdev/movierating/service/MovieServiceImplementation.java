@@ -8,10 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class MovieServiceImplementation implements MovieService {
+
+    // Variable to set how many results to show (20 results per page queried)
+    private int PAGES_TO_QUERY = 5;
 
     @Value("${tmdb.prefix-path}")
     private String PREFIX_PATH;
@@ -21,27 +25,27 @@ public class MovieServiceImplementation implements MovieService {
 
     @Override
     public Set<Movie> findPopular() {
-        return obtainMovieList("/movie/popular");
+        return obtainMovieList("/movie/popular", PAGES_TO_QUERY);
     }
 
     @Override
     public Set<Movie> findTopRated() {
-        return obtainMovieList("/movie/top_rated");
+        return obtainMovieList("/movie/top_rated", PAGES_TO_QUERY);
     }
 
     @Override
     public Set<Movie> findUpcoming() {
-        return obtainMovieList("/movie/upcoming");
+        return obtainMovieList("/movie/upcoming", PAGES_TO_QUERY);
     }
 
     @Override
     public Movie findById(int movieId) {
-        return obtainSingleMovie("/movie/" + String.valueOf(movieId));
+        return obtainSingleMovie("/movie/" + movieId);
     }
 
     @Override
     public Set<Movie> findByGenre(int genreId) {
-        return obtainMovieListByGenre("/discover/movie", genreId);
+        return obtainMovieList("/discover/movie", PAGES_TO_QUERY, genreId);
     }
 
     @Override
@@ -50,39 +54,67 @@ public class MovieServiceImplementation implements MovieService {
     }
 
 
-    private Set<Movie> obtainMovieList(String from){
+    private Set<Movie> obtainMovieList(String from, int pages){
+        // Create set to hold results from all pages queried
+        Set<Movie> results = new HashSet<>();
+
+        // Create JSON's object mapper
         ObjectMapper mapper = new ObjectMapper();
+
+        // Create new object to hold search results
         MovieSearch movieSearch = null;
         try {
-            movieSearch = mapper.readValue(new URL(PREFIX_PATH + from + "?" + API_KEY), MovieSearch.class );
+            // Add 20 results to the search for every page queried
+            for (int page = 1; page <= pages; page++) {
+                movieSearch = mapper.readValue(new URL(PREFIX_PATH
+                                + from
+                                + "?" + API_KEY
+                                + "&" + "page=" + page),
+                        MovieSearch.class);
+                results.addAll(movieSearch.getMovies());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (movieSearch != null) {
-            return movieSearch.getMovies();
-        } else {
+
+        // Throw runtime exception if there was a problem fetching the data
+        if (results.isEmpty()) {
             throw new RuntimeException("There was a problem fetching the data from the API.");
         }
+        return results;
     }
 
-    private Set<Movie> obtainMovieListByGenre(String from, int genreId){
+    private Set<Movie> obtainMovieList(String from, int pages, int genreId){
+        // Create set to hold results from all pages queried
+        Set<Movie> results = new HashSet<>();
+
+        // Create JSON's object mapper
         ObjectMapper mapper = new ObjectMapper();
+
+        // Create new object to hold search results
         MovieSearch movieSearch = null;
         try {
-            movieSearch = mapper.readValue(new URL(PREFIX_PATH + from
-                    + "?" + API_KEY
-                    + "&" + "with_genres=" + genreId
-                    + "&" + "include_adult=" + false
-                    + "&" + "sort_by=" + "popularity.desc"),
-                        MovieSearch.class );
+            // Add 20 results to the search for every page queried
+            for (int page = 1; page <= pages; page++) {
+                movieSearch = mapper.readValue(new URL(PREFIX_PATH
+                                + from
+                                + "?" + API_KEY
+                                + "&" + "with_genres=" + genreId
+                                + "&" + "include_adult=" + false
+                                + "&" + "sort_by=" + "popularity.desc"
+                                + "&" + "page=" + page),
+                        MovieSearch.class);
+                results.addAll(movieSearch.getMovies());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (movieSearch != null) {
-            return movieSearch.getMovies();
-        } else {
+
+        // Throw runtime exception if there was a problem fetching the data
+        if (results.isEmpty()) {
             throw new RuntimeException("There was a problem fetching the data from the API.");
         }
+        return results;
     }
 
     private Set<Movie> obtainMovieListByKeyword(String from, String keyword){
