@@ -147,7 +147,7 @@ public class Movie {
     }
 
     public String getBackdropPath() {
-        return IMAGE_PATH_ORIGINAL + backdropPath;
+        return backdropPath != null ? IMAGE_PATH_ORIGINAL + backdropPath : getPosterPath();
     }
 
     public void setBackdropPath(String backdropPath) {
