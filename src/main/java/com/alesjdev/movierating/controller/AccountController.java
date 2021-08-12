@@ -19,14 +19,18 @@ public class AccountController {
 
     @GetMapping("/settings")
     public String manageAccount(Model theModel){
+        // Get user from the current security session
         User user = accountService.getUserFromPrincipal();
+        // Get the matching object from the database (in case we make modifications, they will display without re-logging)
+        user = accountService.findById(user.getId());
+
         theModel.addAttribute("user", user);
         return "account/account-settings";
     }
 
     @PostMapping("/changeBio")
     public String changeBio(@ModelAttribute User theUser, Model theModel){
-        accountService.modifyUser(theUser);
+        accountService.modifyBio(theUser);
         return "account/account-settings";
     }
 }

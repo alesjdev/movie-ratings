@@ -76,10 +76,6 @@
                         <div class="card-body text-warning">
                             <form:form action="${pageContext.request.contextPath}/account/changeBio" method="POST" modelAttribute="user">
                                 <form:hidden path="id" />
-                                <form:hidden path="password" />
-                                <form:hidden path="username" />
-                                <form:hidden path="email" />
-                                <form:hidden path="enabled" />
                                 <form:textarea path="aboutMe" rows="5" cols="70" class="bg-dark text-warning" />
                                 <br>
                                 <input type="submit" value="Change (Max 500 characters)" class="btn btn-warning" />
