@@ -30,6 +30,20 @@
         <main>
             <div class="container-fluid px-4">
                 <br>
+                <!-- Place for messages: error, alert etc ... -->
+                <c:if test="${registrationError != null}">
+                    <div class="form-group">
+                        <div class="col-xs-15">
+                            <div>
+                                <!-- Check for registration error -->
+                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                        ${registrationError}
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </c:if>
 
                 <!-- Account details -->
                 <div class="card bg-dark mb-4 text-white">
@@ -46,18 +60,24 @@
                                        method="POST" modelAttribute="passwordValidation" >
 
                                 Old password: <br>
-                                <form:password path="password" class="bg-secondary text-danger"
+                                <form:password path="password" class="bg-secondary text-warning"
                                                style="font-weight: bold;" />
+                                <br>
+                                <form:errors path="password" class="text-danger" />
                                 <br><br>
 
                                 New password: <br>
-                                <form:password path="newPassword1" class="bg-secondary text-success"
+                                <form:password path="newPassword1" class="bg-secondary text-warning"
                                                style="font-weight: bold;" />
+                                <br>
+                                <form:errors path="newPassword1" class="text-danger" />
                                 <br><br>
 
                                 Confirm new password: <br>
-                                <form:password path="newPassword2" class="bg-secondary text-success"
+                                <form:password path="newPassword2" class="bg-secondary text-warning"
                                                style="font-weight: bold;" />
+                                <br>
+                                <form:errors path="newPassword2" class="text-danger" />
                                 <br><br>
 
                                 <input type="submit" value="Change password" class="btn btn-danger" />

@@ -3,9 +3,11 @@ package com.alesjdev.movierating.service;
 import com.alesjdev.movierating.dao.UserRepository;
 import com.alesjdev.movierating.entity.User;
 import com.alesjdev.movierating.security.CustomUserDetails;
+import com.alesjdev.movierating.validation.PasswordValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -48,5 +50,24 @@ public class AccountServiceImplementation implements AccountService {
             user = optional.get();
         }
         return user;
+    }
+
+    @Override
+    public boolean isCorrectPassword(PasswordValidation passwordValidation) {
+        // Get currently logged user's password
+        String currentEncodedPassword = this.getUserFromPrincipal().getPassword();
+
+        // Get raw password introduced by user
+        String rawPassword = passwordValidation.getPassword();
+
+        // Return if provided (encoded) password matches with the original
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.matches(rawPassword, currentEncodedPassword);
+    }
+
+    @Override
+    public boolean newPasswordsMatch(PasswordValidation passwordValidation) {
+        // Return if new passwords match
+        return passwordValidation.getNewPassword1().equals(passwordValidation.getNewPassword2());
     }
 }

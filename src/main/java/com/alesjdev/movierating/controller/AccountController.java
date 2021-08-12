@@ -4,12 +4,16 @@ import com.alesjdev.movierating.entity.User;
 import com.alesjdev.movierating.service.AccountService;
 import com.alesjdev.movierating.validation.PasswordValidation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -45,5 +49,33 @@ public class AccountController {
     public String showPasswordForm(Model theModel){
         theModel.addAttribute("passwordValidation", new PasswordValidation());
         return "account/change-password";
+    }
+
+    @PostMapping("/changePassword")
+    public String changePassword(Model theModel, @Valid @ModelAttribute PasswordValidation passwordValidation,
+                                 BindingResult bindingResult){
+        // Validate that fields aren't null or empty
+        if (bindingResult.hasErrors()){
+            return "account/change-password";
+        }
+
+        // Validate that old password matches with current logged password
+        if (!accountService.isCorrectPassword(passwordValidation)){
+            theModel.addAttribute("registrationError", "Error: Current password is incorrect.");
+            return "account/change-password";
+        }
+
+        // Validate that new password and the confirmation match with each other
+        if (!accountService.newPasswordsMatch(passwordValidation)){
+            theModel.addAttribute("registrationError", "Error: New passwords don't match");
+            return "account/change-password";
+        }
+
+        /* If everything is correct */
+        // Make changes in DB
+
+        // Logout user
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return "redirect:/";
     }
 }
