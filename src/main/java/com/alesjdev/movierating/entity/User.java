@@ -35,6 +35,7 @@ public class User {
     private String email;
 
     @Column(name = "about_me")
+    @Size(max = 500, message = "Bio must contain 500 characters max")
     private String aboutMe;
 
     @Column(name = "enabled")

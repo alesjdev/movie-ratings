@@ -35,10 +35,17 @@ public class AccountController {
     }
 
     @PostMapping("/changeBio")
-    public String changeBio(@ModelAttribute User theUser, Model theModel){
+    public String changeBio(@Valid @ModelAttribute User theUser, BindingResult bindingResult, Model theModel){
+
+        // Check if Bio is not exceeding maximum size length
+        if (bindingResult.hasFieldErrors("aboutMe")){
+            return "account/account-settings";
+        }
+
         // Modify user bio
         accountService.modifyBio(theUser);
-        // Fetch updated user info from database and send it to view
+
+        // Fetch updated user info from database
         theUser = accountService.findById(theUser.getId());
 
         theModel.addAttribute("user", theUser);

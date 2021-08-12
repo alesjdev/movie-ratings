@@ -79,7 +79,8 @@
                             <form:form action="${pageContext.request.contextPath}/account/changeBio"
                                        method="POST" modelAttribute="user">
                                 <form:hidden path="id" />
-                                <form:textarea path="aboutMe" rows="7" class="bg-secondary text-warning"
+                                <form:errors path="aboutMe" class="text-danger" />
+                                <form:textarea path="aboutMe" rows="10" class="bg-secondary text-warning"
                                                style="width: 100%; font-weight: bold;" />
                                 <br>
                                 <input type="submit" value="Change (Max 500 characters)" class="btn btn-warning" />
