@@ -48,8 +48,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 //                .antMatchers("/").authenticated()
-                .antMatchers("/register/**").permitAll()
-                .antMatchers("/").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/register/**").permitAll()  // Allow all visitors to access register view page
+                .antMatchers("/").hasAnyAuthority("USER", "ADMIN")  // Allow use of website to registered users only
+                .antMatchers("/css/**", "/js/**", "/assets/**").permitAll()  // Show css/images/etc. in login/register
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()

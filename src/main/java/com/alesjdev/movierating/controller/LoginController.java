@@ -20,7 +20,8 @@ public class LoginController {
     UserService userService;
 
     @GetMapping("/loginPage")
-    public String showMyLoginPage() {
+    public String displayLogin(Model model) {
+        model.addAttribute("user", new User());
         return "login/login-form";
     }
 
