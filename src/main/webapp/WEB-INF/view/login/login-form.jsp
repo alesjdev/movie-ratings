@@ -53,15 +53,13 @@
                 <!-- Email -->
                 <div style="margin-top: 10px card-body">
                     Email <br>
-                    <form:input path="email" placeholder="Email" class="bg-secondary text-warning"
-                            style="font-weight: bold;" />
+                    <form:input path="email" placeholder="Email" class="bg-secondary text-white" />
                 </div>
                 <br>
                 <!-- Password -->
                 <div style="margin-top: 10px card-body">
                     Password <br>
-                    <form:password path="password" placeholder="Password" class="bg-secondary text-warning"
-                                   style="font-weight: bold;" />
+                    <form:password path="password" placeholder="Password" class="bg-secondary text-white" />
                 </div>
                 <br>
                 <!-- Login/Submit Button -->
