@@ -19,10 +19,10 @@
               background-attachment: fixed;
               background-position: center;">
 
-<div style="padding-top: 75px; margin: auto; width: 50%;">
+<div class="col-xl-4 col-lg-8 col-md-10 col-sm-10 col-xs-10 col-10"  style="padding-top: 75px; margin: auto;">
     <div class="card bg-dark mb-4 text-white mainbox">
         <div class="card-header">
-            <i class="fas fa-key"></i> Sign in
+            <i class="fas fa-key"></i>&nbsp; Sign in
         </div>
         <div class="card bg-dark mb-4 text-white">
             <div class="card-body text-warning">
@@ -53,13 +53,15 @@
                 <!-- Email -->
                 <div style="margin-top: 10px card-body">
                     Email <br>
-                    <form:input path="email" placeholder="Email" class="bg-secondary text-white" />
+                    <form:input path="email" placeholder="Email" class="bg-secondary text-white"
+                                style="width:100%;" />
                 </div>
                 <br>
                 <!-- Password -->
                 <div style="margin-top: 10px card-body">
                     Password <br>
-                    <form:password path="password" placeholder="Password" class="bg-secondary text-white" />
+                    <form:password path="password" placeholder="Password" class="bg-secondary text-white"
+                                   style="width:100%;" />
                 </div>
                 <br>
                 <!-- Login/Submit Button -->
@@ -73,7 +75,8 @@
     </div>
 
     <!-- Go to 'Register new user' view page -->
-    <div>
+    <div class="text-white text-center">
+        Don't have an account yet?
         <a href="${pageContext.request.contextPath}/register/show" class="btn btn-primary" role="button" aria-pressed="true">Register New User</a>
     </div>
 
