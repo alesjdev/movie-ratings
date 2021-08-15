@@ -16,7 +16,7 @@ The data is fetched and parsed from The Movie Database API ( https://www.themovi
 - Modify your account's password and bio from the control panel (Account settings)
 
 ### Technologies used
-This project is created to practice Spring Boot, Spring MVC, Spring Data JPA, Spring Security, Hibernate, PostgreSQL, HTML, CSS, Jackson to fetch and parse data from the external movie API.
+This project is created to practice Spring Boot, Spring MVC, Spring Data JPA, Spring Security, Hibernate, PostgreSQL, Java Bean Validation, HTML, CSS, Jackson to fetch and parse data from the external movie API.
 
 ### Pending
 - Add email verification system upon new account registration.
