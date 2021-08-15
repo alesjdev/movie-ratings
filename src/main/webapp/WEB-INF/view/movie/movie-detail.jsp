@@ -105,6 +105,11 @@
                         <br>
                         <h5 style="margin-left: 10px"> User reviews</h5>
                         <hr>
+                        <!-- Display message if no one reviewed this movie yet -->
+                        <c:if test="${empty movie.reviews}">
+                            <i class="text-warning">No one reviewed this movie yet. Be the first one to rate it! </i>
+                            <br>
+                        </c:if>
                         <!-- Review cards -->
                         <c:forEach var="review" items="${movie.reviews}">
                             <div class="card text-white bg-secondary card-body">
